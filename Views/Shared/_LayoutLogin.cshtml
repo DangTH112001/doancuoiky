@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    @RenderBody()
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="openLogin()">Login</button>
+                <button type="button" class="toggle-btn" onclick="openRegister()">Register</button>
+            </div>
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center;" class="header">
+                <h2>QuickQuiz</h2>
+            </div>
+            <form id="login" action="/Home/Login" method="post" class="input-group">
+                <input name="username" type="text" class="input-field" placeholder="User ID" require>
+                <input name="password" type="password" class="input-field" placeholder="Password" require>
+                <div style="height: 30px"></div>
+                <input class="submit-btn" type="submit" name="submit" value="LOGIN" />
+            </form>
+            <form id="register" action="/Home/Register" method="post" class="input-group">
+                <input name="username"  type="text" class="input-field" placeholder="User ID" require>
+                <input name="password"  type="password" class="input-field" placeholder="Password" require>
+                <input name="repassword"  type="password" class="input-field" placeholder="Confirm password" require>
+                <input name="fullname"  type="text" class="input-field" placeholder="Full name" require>
+                <input class="submit-btn" type="submit" name="submit" value="REGISTER" />
+            </form>
+        </div>
+    </div>
+    <script>
+        var LoginTab = document.getElementById("login");
+        var RegisterTab = document.getElementById("register");
+        var CurrentTab = document.getElementById("btn");
+
+        function openLogin() {
+            LoginTab.style.left = '50px';
+            RegisterTab.style.left = "450px";
+            CurrentTab.style.left = "0px";
+        }
+
+        function openRegister() {
+            LoginTab.style.left = '-400px';
+            RegisterTab.style.left = "50px";
+            CurrentTab.style.left = "110px";
+        }
+    </script>
+</body>
+</html>

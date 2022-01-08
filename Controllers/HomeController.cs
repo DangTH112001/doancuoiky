@@ -11,27 +11,33 @@ namespace doancuoiky.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Home()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Login(string username, string password)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            if (context.existUser(username, password)) {
+                return View("Home", "Home");
+            }
+            else {
+                return View("Index", "Home");
+            }
+        }
+
+        public IActionResult Register(string username, string password, string repassword, string fullname) {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            if (password == repassword && context.addUser(username, password, fullname) != -1) {
+                return View("Home", "Home");
+            }
+            return View("Index", "Home");
         }
     }
 }
