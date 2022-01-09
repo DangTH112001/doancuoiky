@@ -50,24 +50,57 @@
             CurrentTab.style.left = "110px";
         });
         $('#login_btn').click(function() {
-            @* $.ajax({
-                url: 'Home/Login',
+            $.ajax({
+                url: '@Url.Content("~/Home/Login")',
+                type: "post",
                 data: {
                     username: $('#username1').val(),
                     password: $('#password1').val()
                 },
-                dataType: "int",
+                dataType: "json",
                 success: function(data) {
-                        console.log(data);
-                        location.href = '/Home/Home'; 
+                    console.log(data);
+                    if (data == 1) {
+                        window.location.href = '@Url.Content("/Home/Home")';
+                    }
+                    else {
+                        alert("Kiểm tra tài khoản và mật khẩu");
+                    }
                     
+                },
+                error: function(data) {
+                    alert("Error");
+                }
+            }); 
+        });
+        $('#register_btn').click(function() {
+            $.ajax({
+                url: '@Url.Content("~/Home/Register")',
+                type: "post",
+                data: {
+                    username: $('#username2').val(),
+                    password: $('#password2').val(),
+                    repassword: $('#repassword2').val(),
+                    fullname: $('#fullname2').val()
+                },
+                dataType: "json",
+                success: function(data) {
+                    if (data == 0) {
+                        window.location.href = '@Url.Content("/Home/Home")';
+                    } else if (data == -4) {
+                        alert("Vui lòng nhập đầy đủ thông tin");
+                    } else if (data == -1) {
+                        alert("Tài khoản đã tồn tại");
+                    } else if (data == -3) {
+                        alert("Mật khẩu không trùng khớp");
+                    } else if (data == -5) {
+                        alert("Kiểm tra độ dài tài khoản >= 8 và mật khẩu >=8 ");
+                    }
                 },
                 error: function(data) {
                     alert(data);
                 }
-            }); *@
-            console.log("123");
-            window.location.href = '@Url.Content("/Home/Home")';
+            }); 
         })
     </script>
 </body>

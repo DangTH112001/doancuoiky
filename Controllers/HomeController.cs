@@ -21,25 +21,21 @@ namespace doancuoiky.Controllers
             return View();
         }
 
-        public int Login(string username, string password)
+        [HttpPost]
+        public JsonResult Login(string username, string password)
         {
-
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
-            if (context.existUser(username, password)) {
-                return 1;
-            }
-            else {
-                return 0;
-            }
+            return Json(context.existUser(username, password));
         }
 
-        public int Register(string username, string password, string repassword, string fullname) {
+        [HttpPost]
+        public JsonResult Register(string username, string password, string repassword, string fullname) {
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            if (context.existUser(username) == 1) return Json(-1);
+            if (password != repassword) return Json(-3);
             int errorCode = context.addUser(username, password, fullname);
-            Console.WriteLine(username + " " + password + " " + fullname);
-
-            return 1;
+            return Json(errorCode);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace doancuoiky.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public bool existUser(string username, string password) {
+        public int existUser(string username, string password) {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -32,16 +32,40 @@ namespace doancuoiky.Models
                     {
                         while (reader.Read()) 
                             if (Convert.ToInt32(reader["CNT"]) == 1)
-                                return true; // Có user trong database
+                                return 1; // Có user trong database
                         reader.Close();
                     }
                 }
                 catch (Exception ex) {
-                    return false;
+                    return 0;
                 }
                 conn.Close();
             }
-            return false; // Không có user trong database
+            return 0; // Không có user trong database
+        }
+
+        public int existUser(string username) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = "SELECT COUNT(*) CNT FROM USER WHERE account=@username";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("username", username);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read()) 
+                            if (Convert.ToInt32(reader["CNT"]) == 1)
+                                return 1; // Có user trong database
+                        reader.Close();
+                    }
+                }
+                catch (Exception ex) {
+                    return 0;
+                }
+                conn.Close();
+            }
+            return 0; // Không có user trong database
         }
 
         public int addUser(string username, string password, string fullname) {
@@ -55,10 +79,11 @@ namespace doancuoiky.Models
                     cmd.Parameters.AddWithValue("username", username);
                     cmd.Parameters.AddWithValue("password", password);
                     cmd.Parameters.AddWithValue("fullname", fullname);
-                    return (cmd.ExecuteNonQuery());
+                    int code = cmd.ExecuteNonQuery();
+                    return 0;
                 }
                 catch (Exception ex) {
-                    return -1;
+                    return -5;
                 }
                 
             }
