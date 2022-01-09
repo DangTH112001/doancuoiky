@@ -60,8 +60,9 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data);
-                    if (data > 0) {
-                        localStorage.setItem("uid", data);
+                    if (data['id'] > 0) {
+                        localStorage.setItem("uid", data['id']);
+                        localStorage.setItem("name", data['name']);
                         window.location.href = '@Url.Content("/Home/Home")';
                     }
                     else {
@@ -86,16 +87,17 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    if (data > 0) {
-                        localStorage.setItem("uid", data);
+                    if (data['id'] > 0) {
+                        localStorage.setItem("uid", data['id']);
+                        localStorage.setItem("name", data['name']);
                         window.location.href = '@Url.Content("/Home/Home")';
-                    } else if (data == -4) {
+                    } else if (data['id'] == -4) {
                         alert("Vui lòng nhập đầy đủ thông tin");
-                    } else if (data == -1) {
+                    } else if (data['id'] == -1) {
                         alert("Tài khoản đã tồn tại");
-                    } else if (data == -3) {
+                    } else if (data['id'] == -3) {
                         alert("Mật khẩu không trùng khớp");
-                    } else if (data == -5) {
+                    } else if (data['id'] == -5) {
                         alert("Kiểm tra độ dài tài khoản >= 8 và mật khẩu >=8 ");
                     }
                 },

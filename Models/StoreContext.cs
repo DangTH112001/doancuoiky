@@ -19,12 +19,12 @@ namespace doancuoiky.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public bool existUser(string username, string password) {
+        public int getID(string username, string password) {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 try {
-                    string query = "SELECT COUNT(*) CNT FROM USER WHERE account=@username AND password=@password";
+                    string query = "SELECT COUNT(*) CNT, id FROM USER WHERE account=@username AND password=@password";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("username", username);
                     cmd.Parameters.AddWithValue("password", password);
@@ -32,16 +32,62 @@ namespace doancuoiky.Models
                     {
                         while (reader.Read()) 
                             if (Convert.ToInt32(reader["CNT"]) == 1)
-                                return true; // Có user trong database
+                                return Convert.ToInt32(reader["id"]); // Có user trong database
                         reader.Close();
                     }
                 }
                 catch (Exception ex) {
-                    return false;
+                    return 0;
                 }
                 conn.Close();
             }
-            return false; // Không có user trong database
+            return 0; // Không có user trong database
+        }
+
+        public string getName(int id) {
+            if (id <= 0) return null;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = "SELECT name FROM USER WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("id", id);
+                    using (var reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            return reader["name"].ToString();
+                        }
+                    }
+                }
+                catch (Exception ex) {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        public int existUser(string username) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = "SELECT COUNT(*) CNT FROM USER WHERE account=@username";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("username", username);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read()) 
+                            if (Convert.ToInt32(reader["CNT"]) == 1)
+                                return 1; // Có user trong database
+                        reader.Close();
+                    }
+                }
+                catch (Exception ex) {
+                    return 0;
+                }
+                conn.Close();
+            }
+            return 0; // Không có user trong database
         }
 
         public int addUser(string username, string password, string fullname) {
@@ -50,15 +96,27 @@ namespace doancuoiky.Models
             {
                 conn.Open();
                 try {
-                    string query = "INSERT INTO USER(account, password, name) VALUES (@username, @password, @fullname)";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("username", username);
-                    cmd.Parameters.AddWithValue("password", password);
-                    cmd.Parameters.AddWithValue("fullname", fullname);
-                    return (cmd.ExecuteNonQuery());
+                    string query1 = "INSERT INTO USER(account, password, name) VALUES (@username, @password, @fullname)";
+                    MySqlCommand cmd1 = new MySqlCommand(query1, conn);
+                    cmd1.Parameters.AddWithValue("username", username);
+                    cmd1.Parameters.AddWithValue("password", password);
+                    cmd1.Parameters.AddWithValue("fullname", fullname);
+                    int code = cmd1.ExecuteNonQuery();
+
+                    string query2 = "SELECT id FROM USER WHERE account = @username";
+                    MySqlCommand cmd2 = new MySqlCommand(query2, conn);
+                    cmd2.Parameters.AddWithValue("username", username);
+                    using (var reader = cmd2.ExecuteReader())
+                    {
+                        while (reader.Read()) 
+                            return Convert.ToInt32(reader["id"]); // Có user trong database
+                        reader.Close();
+                    }
+                    return 0;
                 }
                 catch (Exception ex) {
-                    return -1;
+                    Console.WriteLine(ex);
+                    return -5;
                 }
                 
             }

@@ -1,120 +1,167 @@
 ﻿<!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
-    <link id="link_css" rel="stylesheet" href="~/css/home.css">
-    <!-- Boxicons CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+
+<head>
+  <meta charset="UTF-8">
+   <link type="text/css" rel='stylesheet' href='@ViewData["css_path"]'>
+  <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
 <body>
-  <div class="sidebar">
+  <div class="sidebar close">
     <div class="logo-details">
-      <i class='bx bx-code icon'></i>
-        <div class="logo_name">QuickQuiz</div>
-        <i class='bx bx-menu' id="btn" ></i>
+      <i class="bx bx-chevrons-right"></i>
+      <span class="logo_name">QuickQuiz</span>
     </div>
-    <ul class="nav-list">
-      <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
-         <span class="tooltip">Search</span>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Dashboard</span>
+
+    <ul class="nav-links">
+      <li class="navigation-item" id="Home">
+        <a asp-controller="Home" asp-action="Home">
+          <i class="bx bxs-home"></i>
+          <span class="link_name">Trang chủ</span>
         </a>
-         <span class="tooltip">Dashboard</span>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Category</a></li>
+        </ul>
       </li>
+      <!-- <li class="navigation-item" id="Discussion">
+        <div class="iocn-link">
+          <a href="discussion">
+            <i class="bx bxl-telegram"></i>
+            <span class="link_name">Thảo luận</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="#">Toan10 - Đa thức</a></li>
+          <li><a href="#">VatLy10 - Con lắc</a></li>
+          <li><a href="#">HoaHoc10 - Chất béo</a></li>
+        </ul>
+      </li> -->
+      <!-- <li class="navigation-item" id="Analysis">
+        <div class="iocn-link">
+          <a>
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="link_name">Thống kê</span>
+          </a> -->
+      <!-- <i class="bx bxs-chevron-down arrow"></i> -->
+      <!-- </div> -->
+      <!-- <ul class="sub-menu">
+            <li><a class="link_name" href="#">Theo dõi</a></li>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Login Form</a></li>
+            <li><a href="#">Card Design</a></li>
+          </ul> -->
+      <!-- </li> -->
+      <li class="navigation-item" id="Bookmark">
+        <a asp-controller="Home" asp-action="Bookmark">
+          <i class="bx bxs-bookmarks"></i>
+          <span class="link_name">Đánh dấu</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Analytics</a></li>
+        </ul>
+      </li>
+
+
+      <li class="navigation-item" id="Account">
+        <a asp-controller="Home" asp-action="Question">
+          <i class="bx bxs-user-circle"></i>
+          <span class="link_name">Câu hỏi</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Cài đặt</a></li>
+        </ul>
+      </li>
+      <!-- <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class="bx bx-plug"></i>
+              <span class="link_name">Plugins</span>
+            </a>
+            <i class="bx bxs-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Plugins</a></li>
+            <li><a href="#">UI Face</a></li>
+            <li><a href="#">Pigments</a></li>
+            <li><a href="#">Box Icons</a></li>
+          </ul>
+        </li> -->
+        <li>
+          <a asp-controller="Home" asp-action="Quiz">
+            <i class="bx bx-compass"></i>
+            <span class="link_name">Bài trắc nghiệm</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Explore</a></li>
+          </ul>
+        </li>
+        <!--<li>
+          <a href="#">
+            <i class="bx bx-history"></i>
+            <span class="link_name">History</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">History</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-cog"></i>
+            <span class="link_name">Setting</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Setting</a></li>
+          </ul>
+        </li> -->
       <li>
-       <a href="#">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">User</span>
-       </a>
-       <span class="tooltip">User</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-chat' ></i>
-         <span class="links_name">Messages</span>
-       </a>
-       <span class="tooltip">Messages</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
-       </a>
-       <span class="tooltip">Analytics</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-folder' ></i>
-         <span class="links_name">File Manager</span>
-       </a>
-       <span class="tooltip">Files</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
-       </a>
-       <span class="tooltip">Order</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
-       </a>
-       <span class="tooltip">Saved</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
-     </li>
-     <li class="profile">
-         <div class="profile-details">
-           <!--<img src="profile.jpg" alt="profileImg">-->
-           <div class="name_job">
-             <div class="name">Prem Shahi</div>
-           </div>
-         </div>
-         <i class='bx bx-log-out' id="log_out" ></i>
-     </li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Nguyễn Tấn Ngà</div>
+            <div class="job"></div>
+          </div>
+          <i class="bx bx-log-out" onclick="logout()"></i>
+        </div>
+      </li>
     </ul>
   </div>
-  <section class="home-section">
       @RenderBody()
   </section>
   <script>
-  let sidebar = document.querySelector(".sidebar");
-  let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e) => {
+        let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+        arrowParent.classList.toggle("showMenu");
+      });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-chevrons-right");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("close");
+    });
 
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange();
-  });
+    function logout(){
+            localStorage.removeItem('name');
+            localStorage.removeItem('uid');
+            location.href = '/';
+        }
 
-  searchBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange(); 
-  });
-
-  // following are the code to change sidebar button(optional)
-  function menuBtnChange() {
-   if(sidebar.classList.contains("open")){
-     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
-   }else {
-     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
-   }
-  }
+    $(document).ready(function(){
+            $('.profile_name').text(localStorage.getItem('name'));
+        })
   </script>
 </body>
+
 </html>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj": {}
+    "C:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\doancuoiky.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj": {
+    "C:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\doancuoiky.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj",
+        "projectUniqueName": "C:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\doancuoiky.csproj",
         "projectName": "doancuoiky",
-        "projectPath": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj",
+        "projectPath": "C:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\doancuoiky.csproj",
         "packagesPath": "C:\\Users\\DangT\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\obj\\",
+        "outputPath": "C:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DangT\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj",
+  "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\doancuoiky.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15619,43 +15619,58 @@
   "RootNamespace": "doancuoiky",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Home\\Question.cshtml",
+      "TargetPath": "Views\\Home\\Question.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Shared\\_LayoutLogin.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Shared\\_LayoutLogin.cshtml",
       "TargetPath": "Views\\Shared\\_LayoutLogin.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Shared\\_LayoutHome.cshtml",
-      "TargetPath": "Views\\Shared\\_LayoutHome.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Home\\Index.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Shared\\_LayoutHome.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutHome.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Home\\Home.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Home\\Quiz.cshtml",
+      "TargetPath": "Views\\Home\\Quiz.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Home\\Home.cshtml",
       "TargetPath": "Views\\Home\\Home.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\_ViewStart.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Home\\Bookmark.cshtml",
+      "TargetPath": "Views\\Home\\Bookmark.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\doancuoiky-hoainhan_01\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     }
   ],
