@@ -60,7 +60,8 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data);
-                    if (data == 1) {
+                    if (data > 0) {
+                        localStorage.setItem("uid", data);
                         window.location.href = '@Url.Content("/Home/Home")';
                     }
                     else {
@@ -85,7 +86,8 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    if (data == 0) {
+                    if (data > 0) {
+                        localStorage.setItem("uid", data);
                         window.location.href = '@Url.Content("/Home/Home")';
                     } else if (data == -4) {
                         alert("Vui lòng nhập đầy đủ thông tin");

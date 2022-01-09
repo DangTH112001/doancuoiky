@@ -25,7 +25,7 @@ namespace doancuoiky.Controllers
         public JsonResult Login(string username, string password)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
-            return Json(context.existUser(username, password));
+            return Json(context.getID(username, password));
         }
 
         [HttpPost]
