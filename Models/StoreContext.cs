@@ -23,16 +23,21 @@ namespace doancuoiky.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) CNT FROM USER WHERE account=@username AND password=@password";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("username", username);
-                cmd.Parameters.AddWithValue("password", password);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read()) 
-                        if (Convert.ToInt32(reader["CNT"]) == 1)
-                            return true; // Có user trong database
-                    reader.Close();
+                try {
+                    string query = "SELECT COUNT(*) CNT FROM USER WHERE account=@username AND password=@password";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("username", username);
+                    cmd.Parameters.AddWithValue("password", password);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read()) 
+                            if (Convert.ToInt32(reader["CNT"]) == 1)
+                                return true; // Có user trong database
+                        reader.Close();
+                    }
+                }
+                catch (Exception ex) {
+                    return false;
                 }
                 conn.Close();
             }
@@ -40,15 +45,22 @@ namespace doancuoiky.Models
         }
 
         public int addUser(string username, string password, string fullname) {
+            if (username == null || password == null || fullname == null) return -2;
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string query = "INSERT INTO USER(account, password, name) VALUES (@username, @password, @fullname)";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("username", username);
-                cmd.Parameters.AddWithValue("password", password);
-                cmd.Parameters.AddWithValue("fullname", fullname);
-                return (cmd.ExecuteNonQuery());
+                try {
+                    string query = "INSERT INTO USER(account, password, name) VALUES (@username, @password, @fullname)";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("username", username);
+                    cmd.Parameters.AddWithValue("password", password);
+                    cmd.Parameters.AddWithValue("fullname", fullname);
+                    return (cmd.ExecuteNonQuery());
+                }
+                catch (Exception ex) {
+                    return -1;
+                }
+                
             }
         }
     }

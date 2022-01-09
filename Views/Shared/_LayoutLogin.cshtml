@@ -13,24 +13,24 @@
         <div class="form-box">
             <div class="button-box">
                 <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="openLogin()">Login</button>
-                <button type="button" class="toggle-btn" onclick="openRegister()">Register</button>
+                <button id="f1" type="button" class="toggle-btn">Login</button>
+                <button id="f2" type="button" class="toggle-btn">Register</button>
             </div>
             <div style="width: 100%; display: flex; justify-content: center; align-items: center;" class="header">
                 <h2>QuickQuiz</h2>
             </div>
-            <form id="login" action="/Home/Login" method="post" class="input-group">
-                <input name="username" type="text" class="input-field" placeholder="User ID" require>
-                <input name="password" type="password" class="input-field" placeholder="Password" require>
+            <form id="login" class="input-group">
+                <input id="username1" type="text" class="input-field" placeholder="User ID" require>
+                <input id="password1" type="password" class="input-field" placeholder="Password" require>
                 <div style="height: 30px"></div>
-                <input class="submit-btn" type="submit" name="submit" value="LOGIN" />
+                <div id="login_btn" class="submit-btn"><b>LOG IN</b></div>
             </form>
-            <form id="register" action="/Home/Register" method="post" class="input-group">
-                <input name="username"  type="text" class="input-field" placeholder="User ID" require>
-                <input name="password"  type="password" class="input-field" placeholder="Password" require>
-                <input name="repassword"  type="password" class="input-field" placeholder="Confirm password" require>
-                <input name="fullname"  type="text" class="input-field" placeholder="Full name" require>
-                <input class="submit-btn" type="submit" name="submit" value="REGISTER" />
+            <form id="register" class="input-group">
+                <input id="username2"  type="text" class="input-field" placeholder="User ID" require>
+                <input id="password2"  type="password" class="input-field" placeholder="Password" require>
+                <input id="repassword2"  type="password" class="input-field" placeholder="Confirm password" require>
+                <input id="fullname2"  type="text" class="input-field" placeholder="Full name" require>
+                <div id="register_btn" class="submit-btn"><b>REGISTER</b></div>
             </form>
         </div>
     </div>
@@ -39,17 +39,38 @@
         var RegisterTab = document.getElementById("register");
         var CurrentTab = document.getElementById("btn");
 
-        function openLogin() {
+        $("#f1").click(function() {
             LoginTab.style.left = '50px';
             RegisterTab.style.left = "450px";
             CurrentTab.style.left = "0px";
-        }
-
-        function openRegister() {
+        });
+        $("#f2").click(function() {
             LoginTab.style.left = '-400px';
             RegisterTab.style.left = "50px";
             CurrentTab.style.left = "110px";
-        }
+        });
+        $('#login_btn').click(function() {
+            @* $.ajax({
+                url: 'Home/Login',
+                data: {
+                    username: $('#username1').val(),
+                    password: $('#password1').val()
+                },
+                dataType: "int",
+                success: function(data) {
+                        console.log(data);
+                        location.href = '/Home/Home'; 
+                    
+                },
+                error: function(data) {
+                    alert(data);
+                }
+            }); *@
+            console.log("123");
+            window.location.href = '@Url.Content("/Home/Home")';
+        })
     </script>
 </body>
 </html>
+
+
