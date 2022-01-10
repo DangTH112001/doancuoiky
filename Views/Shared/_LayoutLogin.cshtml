@@ -3,7 +3,7 @@
 
 <head>
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/Auth/Index.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -51,7 +51,7 @@
         });
         $('#login_btn').click(function() {
             $.ajax({
-                url: '@Url.Content("~/Home/Login")',
+                url: '@Url.Content("~/Auth/Login")',
                 type: "post",
                 data: {
                     username: $('#username1').val(),
@@ -63,7 +63,7 @@
                     if (data['id'] > 0) {
                         localStorage.setItem("uid", data['id']);
                         localStorage.setItem("name", data['name']);
-                        window.location.href = '@Url.Content("/Home/Home")';
+                        window.location.href = '@Url.Content("/Home/Index")';
                     }
                     else {
                         alert("Kiểm tra tài khoản và mật khẩu");
@@ -77,7 +77,7 @@
         });
         $('#register_btn').click(function() {
             $.ajax({
-                url: '@Url.Content("~/Home/Register")',
+                url: '@Url.Content("~/Auth/Register")',
                 type: "post",
                 data: {
                     username: $('#username2').val(),
@@ -90,7 +90,7 @@
                     if (data['id'] > 0) {
                         localStorage.setItem("uid", data['id']);
                         localStorage.setItem("name", data['name']);
-                        window.location.href = '@Url.Content("/Home/Home")';
+                        window.location.href = '@Url.Content("/Home/Index")';
                     } else if (data['id'] == -4) {
                         alert("Vui lòng nhập đầy đủ thông tin");
                     } else if (data['id'] == -1) {

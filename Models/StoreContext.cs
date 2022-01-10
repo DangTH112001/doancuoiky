@@ -90,6 +90,64 @@ namespace doancuoiky.Models
             return 0; // Không có user trong database
         }
 
+        public List<Question> getQuestions(int uid) {
+            List<Question> result = new List<Question>();
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM QUESTION WHERE uid = @uid";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("uid", uid);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Question()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            question = reader["question"].ToString(),
+                            filter = reader["filter"].ToString(),
+                            A = reader["A"].ToString(),
+                            B = reader["B"].ToString(),
+                            C = reader["C"].ToString(),
+                            D = reader["D"].ToString(),
+                            answer = reader["answer"].ToString(),
+                            uid = Convert.ToInt32(reader["uid"])
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
+        public List<Question> getQuestions(string filter) {
+            List<Question> result = new List<Question>();
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM QUESTION WHERE filter = @filter";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("filter", filter);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Question()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            question = reader["question"].ToString(),
+                            filter = reader["filter"].ToString(),
+                            A = reader["A"].ToString(),
+                            B = reader["B"].ToString(),
+                            C = reader["C"].ToString(),
+                            D = reader["D"].ToString(),
+                            answer = reader["answer"].ToString(),
+                            uid = Convert.ToInt32(reader["uid"])
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
         public int addUser(string username, string password, string fullname) {
             if (username == null || password == null || fullname == null) return -2;
             using (MySqlConnection conn = GetConnection())

@@ -1,0 +1,122 @@
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<section class="home-section">
+<div class="container">
+  <form action="/action_page.php">
+    <div class="row">
+      <div class="col-25">
+        <label>Câu hỏi</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="question" placeholder="Câu hỏi của bạn...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Đáp án đúng</label>
+      </div>
+      <div class="col-75">
+        <select>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Filter</label>
+      </div>
+      <div class="col-75">
+        <select class="filter-content" id="selected_filter_item">
+        <optgroup label="Lớp 10">
+          <option value="toan10">Toán 10</option>
+          <option value="vatly10">Vật lý 10</option>
+          <option value="hoahoc10">Hóa học 10</option>
+          <option value="sinhoc10">Sinh học 10</option>
+          <option value="anhvan10">Anh văn 10</option>
+          <option value="gdcd10">Giáo dục công dân 10</option>
+          <option value="dialy10">Địa lý 10</option>
+          <option value="lichsu10">Lịch sử 10</option>
+        </optgroup>
+        <optgroup label="Lớp 11">
+          <option value="toan11">Toán 11</option>
+          <option value="vatly11">Vật lý 11</option>
+          <option value="hoahoc11">Hóa học 11</option>
+          <option value="sinhoc11">Sinh học 11</option>
+          <option value="anhvan11">Anh văn 11</option>
+          <option value="gdcd11">Giáo dục công dân 11</option>
+          <option value="dialy11">Địa lý 11</option>
+          <option value="lichsu11">Lịch sử 11</option>
+        </optgroup>
+        <optgroup label="Lớp 12">
+          <option value="toan12">Toán 12</option>
+          <option value="vatly12">Vật lý 12</option>
+          <option value="hoahoc12">Hóa học 12</option>
+          <option value="sinhoc12">Sinh học 12</option>
+          <option value="anhvan12">Anh văn 12</option>
+          <option value="gdcd12">Giáo dục công dân 12</option>
+          <option value="dialy12">Địa lý 12</option>
+          <option value="lichsu12">Lịch sử 12</option>
+        </optgroup>
+        <optgroup label="Ôn thi THPT">
+          <option value="toanthpt">Toán</option>
+          <option value="vatlythpt">Vật lý</option>
+          <option value="hoahocthpt">Hóa học</option>
+          <option value="sinhocthpt">Sinh học</option>
+          <option value="anhvanthpt">Anh văn</option>
+          <option value="gdcdthpt">Giáo dục công dân</option>
+          <option value="dialythpt">Địa lý</option>
+          <option value="lichsuthpt">Lịch sử</option>
+        </optgroup>
+      </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Đáp án A</label>
+      </div>
+      <div class="col-75">
+        <textarea name="A" placeholder="Nhập đáp án A" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Đáp án B</label>
+      </div>
+      <div class="col-75">
+        <textarea name="B" placeholder="Nhập đáp án B" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Đáp án C</label>
+      </div>
+      <div class="col-75">
+        <textarea name="C" placeholder="Nhập đáp án C" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Đáp án D</label>
+      </div>
+      <div class="col-75">
+        <textarea name="D" placeholder="Nhập đáp án D" style="height:200px"></textarea>
+      </div>
+    </div>
+    @* <div class="row">
+        <div class="col-25">
+            <label>Preview</label>
+        </div>
+        <div id="preview" class="col-75">
+
+        </div>
+    </div> *@
+    <div class="row">
+      <input type="submit" value="Cập nhật">
+    </div>
+  </form>
+</div>
+</section>
