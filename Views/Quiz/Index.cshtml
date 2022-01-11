@@ -1,7 +1,7 @@
 @{
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
-
+@model List<Multiplechoice>
 <section class="home-section">
   <div class="hs__header" style="display: none;">
     <div class="filter">
@@ -56,96 +56,53 @@
     </div>
   </div>
   <div class="hs__content row">
-    <!-- <div class="col-sm-12 text-right">
-      <button id="btn_add" class="btn btn-success"><a href="addquiz" style="text-decoration:none;color: red;">Thêm bài trắc nghiệm</a></button>
-    </div> -->
-    <h3 class="grid-subject-title">CÁC BÀI TRẮC NGHIỆM ĐÃ TẠO</h3>
-    <div class="data-item-wrapper">
-      <div class="grid-subjects">
-        <!-- <div class="grid-item">
+      <h3 class="grid-subject-title">CÁC BÀI TRẮC NGHIỆM CỦA TÔI</h3>
+      <div class="grid-container">
+        @foreach (var item in Model)
+        {
+          <div class="grid-item">
             <div class="quiz-name">
-              <h5>Chuyên đề hình học không gian</h5>
-              <h3>Tìm điểm thỏa mãn đẳng thức cho trước nâng cao</h3>
+                <h3>@item.title</h3>
             </div>
             <div class="quiz-content">
-              <div class="quiz-channel">
-                <div class="quiz-channel-icon">
-                  <img src="/app/Assets/avatar-icon.jpg" alt="" />
+                <div class="quiz-channel">
+                    <p>Số câu hỏi: <b>@item.total câu</b></p>
                 </div>
-                <p>Số câu hỏi: <b>50 câu</b></p>
-              </div>
-              <div class="quiz-action">
-                <button id="btn_bookmark" onclick="">Đánh dấu</button>
-                <button id="btn_join_list">
-                  Thi ngay
-                </button>
-              </div>
-              <div class="quiz-descr">
-                <p>
-                  <span>Thời lượng</span><br />
-                  <span>30 phút</span>
-                </p>
-                <p>
-                  <span>Cao nhất</span><br />
-                  <span>9.5</span>
-                </p>
-                <p>
-                  <span>Tham gia</span><br />
-                  <span>112</span>
-                </p>
-              </div>
+                <div class="quiz-action">
+                    <button onclick="sua(@item.id)">Sửa</button>
+                    <button onclick="xoa(@item.id)">Xóa</button>
+                </div>
+                <div class="quiz-descr">
+                    <p>
+                    <span>Thời lượng</span><br />
+                    <span>@item.time phút</span>
+                    </p>
+                    <p>
+                    <span>Tham gia</span><br />
+                    <span>@item.participant</span>
+                    </p>
+                </div>
             </div>
-          </div> -->
-        <!-- <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div> -->
+          </div>
+        }
       </div>
-      <div class="loading-items-space">
-        <!-- <p>loading...</p> -->
-      </div>
-    </div>
   </div>
 </section>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<!-- <script type="text/javascript" src="<?= base_url() ?>/app/js/Student/Home/SubjectSlider.js"></script> -->
-<!-- <script type="text/javascript" src="<?= base_url() ?>/app/js/Student/Home/Pagination.js"></script> -->
-<script type="text/javascript" src="~/js/quiz_pagination.js"></script>
 
 <script>
-  function test(qid) {
-    /* window.location = 'editquiz'; */
-    window.location = 'editQuiz?qid=' + qid;
+  function xoa(id) {
+    if (confirm("Xóa bài trắc nghiệm?")) {
+        window.location.href = '@Url.Action("Delete", "Quiz")?mcid=' + id;
+    }
+  }
+
+  function sua(id) {
+    if (confirm("Sửa bài trắc nghiệm?")) {
+        window.location.href = '@Url.Action("Update", "Quiz")?mcid=' + id;
+    }
   }
 </script>

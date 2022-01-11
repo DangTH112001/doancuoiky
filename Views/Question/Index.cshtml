@@ -75,7 +75,8 @@
     <div id="questions" class="content-question exam-content">
         @foreach (var item in Model)
         {
-            <div id='@item.id' class="question_form">
+            <div id='@item.id' class="question_form" onclick="changeForm(this.id)" ondblclick="edit(this.id)">
+                <span class="checkmark" hidden>&#10003;</span>
                 <h4 id="question">@item.question</h4>
                 <label id="A">A: @item.A</label> <br>
                 <label id="B">B: @item.B</label> <br>
@@ -89,7 +90,6 @@
   </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="~/js/paging.js"></script>
 <script>
 // Filter click
     $('.filter-content').on('change', function() {
@@ -104,20 +104,19 @@
             success: function(result) {
                 $("#questions").html("");
                 for (var i in result) {
-                    console.log(result[i]);
-                    var html = '<div class="question_form">';
-                        html += '<label>' + result[i].question + '</label> <br>';
-                        html += '<label>A: ' + result[i].a + '</label> <br>';
-                        html += '<label>B: ' + result[i].b + '</label> <br>';
-                        html += '<label>C: ' + result[i].c + '</label> <br>';
-                        html += '<label>D: ' + result[i].d + '</label> <br>';
-                        html += '<label>Đáp án: ' + result[i].answer + '</label> <br>';
-                        html += '<label hidden>' + result[i].id + '</label>';
+                    var html = '<div id="' + result[i].id + '" class="question_form" onclick="changeForm(this.id)" ondblclick="edit(this.id)">';
+                        html += '<span class="checkmark" hidden>&#10003;</span>';
+                        html += '<h4 id="question">' + result[i].question + '</h4>';
+                        html += '<label id="A">A: ' + result[i].a + '</label> <br>';
+                        html += '<label id="B">B: ' + result[i].b + '</label> <br>';
+                        html += '<label id="C">C: ' + result[i].c + '</label> <br>';
+                        html += '<label id="D">D: ' + result[i].d + '</label> <br>';
+                        html += '<label id="answer">Đáp án: ' + result[i].answer + '</label>';
                         html += '</div>';
                     $("#questions").append(html);
                 }
             }
-        })
+        });
     });
 
   $(".back-to-top").addClass("hidden-top");
@@ -136,25 +135,38 @@
     return false;
   });
 
-  $(".question_form").click(function() {
-      var color = $(this).css("border-color");
-      if (color == 'rgb(0, 0, 0)') {
-          $(this).css('border-color', 'green');
-      }
-      else {
-          $(this).css('border-color', 'black');
-      }
-  });
+  function changeForm(id) {
+    var color = $(document).find('#' + id).css("border-color");
+    console.log(color);
+    if (color == 'rgb(0, 0, 0)') {
+        $(document).find('#' + id).css('border-color', 'green');
+        $(document).find('#' + id).find('.checkmark').show();
+    }
+    else {
+        $(document).find('#' + id).css('border-color', 'black');
+        $(document).find('#' + id).find('.checkmark').hide();
+    }
+  }
 
-  $(".question_form").on('dblclick', function() {
-      var id = this.id;
-      console.log(id);
-      if (confirm("Chỉnh sửa câu hỏi?")) {
-          window.location.href = '@Url.Action("Update", "Question")?qid=' + id;
-      }
-  })
+  function edit(id) {
+    if (confirm("Chỉnh sửa câu hỏi?")) {
+        window.location.href = '@Url.Action("Update", "Question")?qid=' + id;
+    }
+  }
 
   $("#btn-add").click(function() {
-      window.location.href = '@Url.Action("Insert", "Question")';
+      window.location.href = '@Url.Action("Insert", "Question")?uid=' + localStorage.getItem('uid');
+  });
+
+  $("#btn-preview").click(function() {
+      var data = '';
+      $(".question_form").each(function() {
+          if ($(this).find(".checkmark").is(":visible")) {
+            data += this.id + '_';
+          }
+      });
+      data = data.substring(0, data.length-1);
+
+      window.location.href = '@Url.Action("Preview", "Question")?list=' + data;
   });
 </script>

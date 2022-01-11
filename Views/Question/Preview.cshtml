@@ -1,0 +1,71 @@
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@model List<Question>
+
+<section class="home-section">
+<div class="container">
+  <form id="myform" action="/Quiz/ThemQuiz" method="post">
+    <input type="text" name="uid" value='@ViewData["uid"]' hidden>
+    <div class="row">
+      <div class="col-25">
+        <label>Title</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="title" placeholder="Nhập tên quiz">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Description</label>
+      </div>
+      <div class="col-75">
+        <textarea name="description" placeholder="Nhập miêu tả" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label>Thời gian làm bài</label>
+      </div>
+      <div class="col-75">
+        <input id="time" type="text" name="time" min="1" max="360" placeholder="Nhập thời gian từ 1 phút tới 360 phút">
+      </div>
+    </div>
+    <div id="questions" class="row">
+        @foreach (var item in Model)
+        {
+            <input name="qids" type="text" hidden value='@item.id'>
+            <div id='@item.id' class="question_form">
+                <span class="checkmark" hidden>&#10003;</span>
+                <h4 id="question">@item.question</h4>
+                <label id="A">A: @item.A</label> <br>
+                <label id="B">B: @item.B</label> <br>
+                <label id="C">C: @item.C</label> <br>
+                <label id="D">D: @item.D</label> <br>
+                <label id="answer">Đáp án: @item.answer</label>
+            </div>
+        }
+    </div>
+    <div class="row">
+      <input id="btn" type="submit" value="Tạo quiz">
+    </div> 
+  </form>
+</div>
+</section>
+
+<script>
+$(function () {
+  $("#time").keydown(function () {
+    // Save old value.
+    if (!$(this).val() || (parseInt($(this).val()) <= 360 && parseInt($(this).val()) >= 1))
+    $(this).data("old", $(this).val());
+  });
+  $("#time").keyup(function () {
+    // Check correct, else revert back to old value.
+    if (!$(this).val() || (parseInt($(this).val()) <= 360 && parseInt($(this).val()) >= 1))
+      ;
+    else
+      $(this).val($(this).data("old"));
+  });
+});
+</script>

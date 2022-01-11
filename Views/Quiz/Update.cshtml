@@ -1,0 +1,92 @@
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@model List<Multiplechoice>
+
+@foreach (var item in Model)
+{
+    <section class="home-section">
+    <div class="container">
+    <form id="myform" action="/Quiz/Sua" method="post">
+        <input type="text" id="id" name="id" value='@item.id' hidden>
+        <div class="row">
+        <div class="col-25">
+            <label>Title</label>
+        </div>
+        <div class="col-75">
+            <input type="text" name="title" placeholder="Nhập tên quiz" value="@item.title">
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-25">
+            <label>Description</label>
+        </div>
+        <div class="col-75">
+            <textarea name="description" placeholder="Nhập miêu tả" style="height:200px">@item.description</textarea>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-25">
+            <label>Thời gian làm bài</label>
+        </div>
+        <div class="col-75">
+            <input id="time" type="text" name="time" min="1" max="360" placeholder="Nhập thời gian từ 1 phút tới 360 phút" value="@item.time">
+        </div>
+        </div>
+        <div id="questions" class="row">
+        </div>
+        <div class="row">
+        <input id="btn" type="submit" value="Sửa bài trắc nghiệm">
+        </div> 
+    </form>
+    </div>
+    </section>
+}
+
+
+<script>
+$(function () {
+  $("#time").keydown(function () {
+    // Save old value.
+    if (!$(this).val() || (parseInt($(this).val()) <= 360 && parseInt($(this).val()) >= 1))
+    $(this).data("old", $(this).val());
+  });
+  $("#time").keyup(function () {
+    // Check correct, else revert back to old value.
+    if (!$(this).val() || (parseInt($(this).val()) <= 360 && parseInt($(this).val()) >= 1))
+      ;
+    else
+      $(this).val($(this).data("old"));
+  });
+});
+$.ajax({
+    url: '@Url.Action("getQuestions","Question")',
+    method: 'post',
+    dataType: 'json',
+    data: {
+        mcid: $(document).find("#id").val()
+    },
+    success: function(result) {
+        
+        $("#questions").html("");
+        for (var i in result) {
+            var html = '<div id="' + result[i].id + '" class="question_form" ondblclick="edit(this.id)">';
+                html += '<span class="checkmark" hidden>&#10003;</span>';
+                html += '<h4 id="question">' + result[i].question + '</h4>';
+                html += '<label id="A">A: ' + result[i].a + '</label> <br>';
+                html += '<label id="B">B: ' + result[i].b + '</label> <br>';
+                html += '<label id="C">C: ' + result[i].c + '</label> <br>';
+                html += '<label id="D">D: ' + result[i].d + '</label> <br>';
+                html += '<label id="answer">Đáp án: ' + result[i].answer + '</label>';
+                html += '</div>';
+            $("#questions").append(html);
+        }
+    }
+});
+
+function edit(id) {
+    if (confirm("Chỉnh sửa câu hỏi?")) {
+        window.location.href = '@Url.Action("Update", "Question")?qid=' + id;
+    }
+  }
+</script>

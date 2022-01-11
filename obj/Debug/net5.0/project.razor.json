@@ -15619,8 +15619,28 @@
   "RootNamespace": "doancuoiky",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Question\\CapNhat.cshtml",
+      "TargetPath": "Views\\Question\\CapNhat.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Question\\Insert.cshtml",
       "TargetPath": "Views\\Question\\Insert.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Quiz\\Update.cshtml",
+      "TargetPath": "Views\\Quiz\\Update.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Question\\Them.cshtml",
+      "TargetPath": "Views\\Question\\Them.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Question\\Preview.cshtml",
+      "TargetPath": "Views\\Question\\Preview.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15644,8 +15664,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Quiz\\Delete.cshtml",
+      "TargetPath": "Views\\Quiz\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Quiz\\ThemQuiz.cshtml",
+      "TargetPath": "Views\\Quiz\\ThemQuiz.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15656,6 +15686,11 @@
     {
       "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Auth\\Index.cshtml",
       "TargetPath": "Views\\Auth\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Quiz\\Sua.cshtml",
+      "TargetPath": "Views\\Quiz\\Sua.cshtml",
       "FileKind": "mvc"
     },
     {

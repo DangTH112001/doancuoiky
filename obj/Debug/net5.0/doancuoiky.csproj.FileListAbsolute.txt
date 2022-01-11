@@ -168,3 +168,10 @@ C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Question\Ins
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Auth\Index.cshtml.g.cs
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Bookmark\Index.cshtml.g.cs
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Index.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Question\Preview.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Question\Them.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Question\CapNhat.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\ThemQuiz.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Delete.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Update.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Sua.cshtml.g.cs

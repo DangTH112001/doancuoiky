@@ -37,6 +37,7 @@ namespace doancuoiky.Models
                     }
                 }
                 catch (Exception ex) {
+                    Console.WriteLine(ex);
                     return 0;
                 }
                 conn.Close();
@@ -60,6 +61,7 @@ namespace doancuoiky.Models
                     }
                 }
                 catch (Exception ex) {
+                    Console.WriteLine(ex);
                     return null;
                 }
             }
@@ -83,6 +85,7 @@ namespace doancuoiky.Models
                     }
                 }
                 catch (Exception ex) {
+                    Console.WriteLine(ex);
                     return 0;
                 }
                 conn.Close();
@@ -97,6 +100,64 @@ namespace doancuoiky.Models
                 string query = "SELECT * FROM QUESTION WHERE uid = @uid";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("uid", uid);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Question()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            question = reader["question"].ToString(),
+                            filter = reader["filter"].ToString(),
+                            A = reader["A"].ToString(),
+                            B = reader["B"].ToString(),
+                            C = reader["C"].ToString(),
+                            D = reader["D"].ToString(),
+                            answer = reader["answer"].ToString(),
+                            uid = Convert.ToInt32(reader["uid"])
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
+        public List<Question> getQuestionsfromQuiz(int mcid) {
+            List<Question> result = new List<Question>();
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM QUESTION INNER JOIN BELONG ON QUESTION.id = BELONG.qid WHERE BELONG.mcid = @mcid";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("mcid", mcid);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Question()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            question = reader["question"].ToString(),
+                            filter = reader["filter"].ToString(),
+                            A = reader["A"].ToString(),
+                            B = reader["B"].ToString(),
+                            C = reader["C"].ToString(),
+                            D = reader["D"].ToString(),
+                            answer = reader["answer"].ToString(),
+                            uid = Convert.ToInt32(reader["uid"])
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
+        public List<Question> getQuestion(int qid) {
+            List<Question> result = new List<Question>();
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM QUESTION WHERE id = @qid";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("qid", qid);
                 using (var reader = cmd.ExecuteReader()) {
                     while (reader.Read()) {
                         result.Add(new Question()
@@ -148,6 +209,108 @@ namespace doancuoiky.Models
             return result;
         }
 
+        public List<Question> getQuestions(string[] list) {
+            List<Question> result = new List<Question>();
+            string ids = "";
+            for (int i = 0; i < list.Length; i++) {
+                ids += list[i] + ",";
+            }
+            ids = ids.Substring(0, ids.Length-1);
+            Console.WriteLine(ids);
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM QUESTION WHERE id in (" + ids + ")";
+                Console.WriteLine(query);
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Question()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            question = reader["question"].ToString(),
+                            filter = reader["filter"].ToString(),
+                            A = reader["A"].ToString(),
+                            B = reader["B"].ToString(),
+                            C = reader["C"].ToString(),
+                            D = reader["D"].ToString(),
+                            answer = reader["answer"].ToString(),
+                            uid = Convert.ToInt32(reader["uid"])
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+        
+        public int themQuestion(string question, string filter, string A, string B, string C, string D, string answer, int uid) {
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                try {
+                    string query = "INSERT INTO QUESTION(question, filter, A, B, C, D, answer, uid) VALUES(@question, @filter, @A, @B, @C, @D, @answer, @uid)";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("question", question);
+                    cmd.Parameters.AddWithValue("filter", filter);
+                    cmd.Parameters.AddWithValue("A", A);
+                    cmd.Parameters.AddWithValue("B", B);
+                    cmd.Parameters.AddWithValue("C", C);
+                    cmd.Parameters.AddWithValue("D", D);
+                    cmd.Parameters.AddWithValue("answer", answer);
+                    cmd.Parameters.AddWithValue("uid", uid);
+                    return (cmd.ExecuteNonQuery());
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return -1;
+                }
+                
+            }
+        }
+        public int capnhatQuestion(int id, string question, string filter, string A, string B, string C, string D, string answer) {
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                try {
+                    string query = "UPDATE QUESTION SET question = @question, filter = @filter, A = @A, B = @B, C = @C, D = @D, answer =  @answer WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("question", question);
+                    cmd.Parameters.AddWithValue("filter", filter);
+                    cmd.Parameters.AddWithValue("A", A);
+                    cmd.Parameters.AddWithValue("B", B);
+                    cmd.Parameters.AddWithValue("C", C);
+                    cmd.Parameters.AddWithValue("D", D);
+                    cmd.Parameters.AddWithValue("answer", answer);
+                    cmd.Parameters.AddWithValue("id", id);
+                    return (cmd.ExecuteNonQuery());
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return -1;
+                }
+                
+            }
+        }
+
+        public int capnhatQuiz(int id, string title, string description, int time) {
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                try {
+                    string query = "UPDATE multiplechoice SET title = @title, description = @description, time = @time WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("title", title);
+                    cmd.Parameters.AddWithValue("description", description);
+                    cmd.Parameters.AddWithValue("time", time);
+                    cmd.Parameters.AddWithValue("id", id);
+                    return (cmd.ExecuteNonQuery());
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return -1;
+                }
+                
+            }
+        }
+
         public int addUser(string username, string password, string fullname) {
             if (username == null || password == null || fullname == null) return -2;
             using (MySqlConnection conn = GetConnection())
@@ -177,6 +340,135 @@ namespace doancuoiky.Models
                     return -5;
                 }
                 
+            }
+        }
+
+        public int addQuiz(string title, string description, int time, int uid) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = "INSERT INTO MULTIPLECHOICE(title, description, time, uid) VALUES (@title, @description, @time, @uid)";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("title", title);
+                    cmd.Parameters.AddWithValue("description", description);
+                    cmd.Parameters.AddWithValue("time", time);
+                    cmd.Parameters.AddWithValue("uid", uid);
+                    int code = cmd.ExecuteNonQuery();
+
+                    string query2 = "SELECT max(id) id FROM MULTIPLECHOICE";
+                    MySqlCommand cmd2 = new MySqlCommand(query2, conn);
+                    using (var reader = cmd2.ExecuteReader())
+                    {
+                        while (reader.Read()) 
+                            return Convert.ToInt32(reader["id"]); // Có user trong database
+                        reader.Close();
+                    }
+                    return 0;
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return -1;
+                }
+                
+            }
+        }
+
+        public int addBelong(int[] qids, int mcid) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    foreach (var qid in qids) {
+                        string query = "INSERT INTO BELONG VALUES (@qid, @mcid)";
+                        MySqlCommand cmd = new MySqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("qid", qid);
+                        cmd.Parameters.AddWithValue("mcid", mcid);
+                        cmd.ExecuteNonQuery();
+                    }
+                    return 0;
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return -1;
+                }
+            }
+        }
+
+        public List<Multiplechoice> getMultiplechoices(int uid) {
+            List<Multiplechoice> result = new List<Multiplechoice>();
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM multiplechoice WHERE uid = @uid";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("uid", uid);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Multiplechoice()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            title = reader["title"].ToString(),
+                            description = reader["description"].ToString(),
+                            time = Convert.ToInt32(reader["time"]),
+                            total = Convert.ToInt32(reader["total"]),
+                            participant = Convert.ToInt32(reader["participant"]),
+                            uid = Convert.ToInt32(reader["uid"]),
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
+        public List<Multiplechoice> getMultiplechoice(int mcid) {
+            List<Multiplechoice> result = new List<Multiplechoice>();
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                string query = "SELECT * FROM multiplechoice WHERE id = @id";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("id", mcid);
+                using (var reader = cmd.ExecuteReader()) {
+                    while (reader.Read()) {
+                        result.Add(new Multiplechoice()
+                        {
+                            id = Convert.ToInt32(reader["id"]),
+                            title = reader["title"].ToString(),
+                            description = reader["description"].ToString(),
+                            time = Convert.ToInt32(reader["time"]),
+                            total = Convert.ToInt32(reader["total"]),
+                            participant = Convert.ToInt32(reader["participant"]),
+                            uid = Convert.ToInt32(reader["uid"]),
+                        }); ;
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
+        public int xoaQuiz(int mcid) {
+            using (MySqlConnection conn = GetConnection()) {
+                conn.Open();
+                try {
+                    string query1 = "DELETE FROM belong WHERE mcid = @mcid";
+                    MySqlCommand cmd1 = new MySqlCommand(query1, conn);
+                    cmd1.Parameters.AddWithValue("mcid", mcid);
+                    int code = cmd1.ExecuteNonQuery();
+
+                    string query = "DELETE FROM multiplechoice WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("id", mcid);
+                
+                    return (cmd.ExecuteNonQuery());
+
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return -1;
+                }
             }
         }
     }
