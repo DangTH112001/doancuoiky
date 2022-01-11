@@ -40,13 +40,16 @@ function findQuiz(filter, text) {
     var constainData = 0;
 
     $.ajax({
-        url: "searchquiz",
+        url: "/Home/FindQuiz",
         method: "GET",
         dataType: 'json',
-        data: { filter: filter, text: text },
+        data: {"filter": filter, "text": text},
         success: function (data) {
             console.log(data);
-            var DataLength = Object.keys(data).length;
+            // var DataLength = Object.keys(data).length;
+
+            var DataLength = data.length;
+
             if (DataLength == 0) {
                 hideSearchView();
                 hideDefaultView();

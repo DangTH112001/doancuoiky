@@ -849,19 +849,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DangT\\.nuget\\packages\\": {}
+    "C:\\Users\\NguyenHoaiNhan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj",
+      "projectUniqueName": "D:\\doancuoiky\\doancuoiky.csproj",
       "projectName": "doancuoiky",
-      "projectPath": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj",
-      "packagesPath": "C:\\Users\\DangT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\obj\\",
+      "projectPath": "D:\\doancuoiky\\doancuoiky.csproj",
+      "packagesPath": "C:\\Users\\NguyenHoaiNhan\\.nuget\\packages\\",
+      "outputPath": "D:\\doancuoiky\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DangT\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\NguyenHoaiNhan\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -908,7 +908,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

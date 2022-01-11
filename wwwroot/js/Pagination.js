@@ -13,7 +13,9 @@ $(document).ready(function () {
     $(window).scroll(function () {
         // var a = $(window).scrollTop() + $(window).height() + 500;
         // var b = $(".grid-subjects").height();
-        if ($(window).scrollTop() + $(window).height() - 500 > $(".data-item-wrapper").height() && action == 'inactive') {
+        console.log('you scroll...');
+        // mặc định ban đầu là (-500)
+        if ($(window).scrollTop() + $(window).height() - 100 > $(".data-item-wrapper").height() && action == 'inactive') {
             lazzyLoader();
             console.log("executing pagination process...");
             action = 'active';
@@ -32,15 +34,16 @@ $(document).ready(function () {
     }
 
     function load_data(limit, start) {
+        console.log("loading more data...");
         $.ajax({
-            url: "/student/scrollPage",
+            url: "/Home/ScrollPage",
             method: "POST",
             dataType: 'json',
             data: { limit: limit, start: start },
             success: function (data) {
                 console.log(data);
-                var DataLength = Object.keys(data).length;
-                testDB = data;
+                DataLength = data.length;
+
                 if (DataLength == 0) {
                     $('.loading-items-space').html('<h4 style="font-size: 14px; text-align: center;font-weight: 800;">Xin lỗi nhưng không còn bài trắc nghiệm nào khác!</h4>');
                     action = 'active';
@@ -50,6 +53,9 @@ $(document).ready(function () {
                         action = 'inactive';
                     });
                 }
+            },
+            error: function(xhr){
+                console.log(xhr);
             }
         })
     };
@@ -65,7 +71,7 @@ $(document).ready(function () {
                                 <div class="quiz-content">
                                 <div class="quiz-channel">
                                     <div class="quiz-channel-icon">
-                                    <img src="/app/Assets/avatar-icon.jpg" alt="" />
+                                    <img src="" alt="" />
                                     </div>
                                     <p>Số câu hỏi: <b>` + questionNum + ` câu</b></p>
                                 </div>
