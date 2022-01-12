@@ -208,19 +208,16 @@
       window.location = '/Home/StartQuiz?id=' + clickedID;
     }
 
-    function bookmarkQuiz(clickedID) {
+    function bookmark(clickedID) {
       var userid = localStorage.getItem('uid');
       $.ajax({
-        url: "bookmarkquiz",
+        url: "/Home/BookmarkQuiz",
         method: "POST",
         dataType: 'json',
-        data: {
-          userid: userid,
-          quizid: clickedID
-        },
+        data: {'userID': userid,'quizID': clickedID},
         success: function(data) {
-          console.log(data);
-          if(data == 1){
+          console.log("Kết qua bookmark: " + data);
+          if(data == 0 || data == 1){
             alert('Đánh dấu thành công!');
           }else{
             alert('Bạn đã đánh dấu bài này rồi!');

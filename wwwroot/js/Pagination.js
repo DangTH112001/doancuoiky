@@ -76,7 +76,7 @@ $(document).ready(function () {
                                     <p>Số câu hỏi: <b>` + questionNum + ` câu</b></p>
                                 </div>
                                 <div class="quiz-action">
-                                    <button id="` + questionID + `" class="btn_bookmark" onclick="bookmarkQuiz(this.id)">Đánh dấu</button>
+                                    <button id="` + questionID + `" class="btn_bookmark" onclick="bookmark(this.id)">Đánh dấu</button>
                                     <button id="` + questionID + `" class="btn_join" onclick="startQuiz(this.id)">
                                     Thi ngay
                                     </button>

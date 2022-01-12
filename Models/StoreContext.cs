@@ -427,5 +427,104 @@ namespace doancuoiky.Models
             }
             return list;
         }
+
+        public int IsExistsBookmark(int quizID, int userID)
+        {
+            int exists = 0;
+            string query = @"
+                select count(*) count
+                from interaction 
+                where uid = " + userID + " and mcid = " + quizID;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            exists = Convert.ToInt32(reader["count"]);
+                        }
+                    }
+                    reader.Close();
+                }
+
+                if (exists != 0)
+                {
+                    string query2 = @" 
+                        select favorite
+                        from interaction 
+                        where uid = " + userID + " and mcid = " + quizID;
+
+                    MySqlCommand cmd2 = new MySqlCommand(query2, conn);
+                    using (var reader = cmd2.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                exists = Convert.ToInt32(reader["favorite"]) + 1;
+                            }
+                        }
+                        reader.Close();
+                    }
+                }
+
+                conn.Close();
+            }
+
+            // trả về 1 nếu đã bookmark, 0 nếu chưa
+            return exists;
+        }
+
+        public int BookmarkQuiz(int quizID, int userID)
+        {
+            string query = "insert into interaction(uid, mcid, favorite) values('" + userID + "','" + quizID + "', 1)";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+
+                }
+
+                conn.Close();
+            }
+
+            return 0;
+        }
+
+        public int BookmarkQuizByUpdate(int quizID, int userID)
+        {
+            Console.WriteLine(quizID + " " + userID);
+            string query = "update interaction set favorite = 1 where uid = @uid and mcid = @mcid";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("uid", userID);
+                cmd.Parameters.AddWithValue("mcid", quizID);
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+            }
+
+            return 0;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace doancuoiky.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index() 
+        public IActionResult Index()
         {
             ViewData["css_path"] = "/css/Home/Index.css";
             return View();
@@ -54,7 +54,7 @@ namespace doancuoiky.Controllers
 
             Double totalScore = 0;
 
-            foreach(var item in data)
+            foreach (var item in data)
             {
                 totalScore += checkResultOfQuestion(quizID, item.id, item.opt);
             }
@@ -70,11 +70,11 @@ namespace doancuoiky.Controllers
             int Score = 0;
             List<AnswerList> list = context.checkResult(QuizID);
 
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                if(QuestionID.Equals(list[i].id))
+                if (QuestionID.Equals(list[i].id))
                 {
-                    if(Opt.Equals(list[i].opt))
+                    if (Opt.Equals(list[i].opt))
                     {
                         Score += 1;
                         break;
@@ -95,10 +95,30 @@ namespace doancuoiky.Controllers
         }
 
         [HttpPost]
-        public string TestCode(int quizID, string answerList, int quesNum, int userID)
+        public JsonResult BookmarkQuiz(int userID, int quizID)
         {
-            string s = "";
-            return s;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            int IsExists = context.IsExistsBookmark(quizID, userID);
+
+            if (IsExists == 0)
+            {
+                context.BookmarkQuiz(quizID, userID);
+            }
+            else if (IsExists == 1)
+            {
+                context.BookmarkQuizByUpdate(quizID, userID);
+            }
+
+            return Json(IsExists);
+        }
+
+        [HttpPost]
+        public JsonResult TestCode(string data)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            // int i = context.IsExistsBookmark(quizID, userID);
+            // string s = userID.ToString() + " " + quizID.ToString();
+            return Json(data);
         }
 
     }
