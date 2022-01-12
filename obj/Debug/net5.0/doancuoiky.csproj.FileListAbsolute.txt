@@ -175,3 +175,6 @@ C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\ThemQui
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Delete.cshtml.g.cs
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Update.cshtml.g.cs
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Sua.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Question\Xoa.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Belong\Xoa.cshtml.g.cs

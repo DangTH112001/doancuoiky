@@ -1,0 +1,39 @@
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@model List<Object>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<section class="home-section">
+@foreach (var item in Model)
+{
+<div class="z-depth-5 main">
+    <div class="row">
+        <div class="col-sm-6 picture">
+            <center><img class="circle responsive-img" src="https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg"></center>
+        </div>
+        <div class="col-sm-6 details">
+            <center>
+              <p class="name"><b>@item.GetType().GetProperty("name").GetValue(item, null)</b> </p>
+            </center>
+        </div>
+    </div>
+    <div class="info">
+      <div class="thongtin">
+          <p><b>@item.GetType().GetProperty("SLTG").GetValue(item, null)</b></p>
+          <p>Số lần tham gia</p>
+      </div>
+      <div class="thongtin">
+          <p><b>@item.GetType().GetProperty("SLT").GetValue(item, null)</b></p>
+          <p>Số bài trắc nghiệm</p>
+      </div>
+      <div class="thongtin">
+          <p><b>@item.GetType().GetProperty("rank").GetValue(item, null)</b></p>
+          <p>Rank</p>
+      </div>
+    </div>
+    <center><a class="waves-effect waves-light btn edit">Edit Profile</a></center>
+</div>
+}
+</section>

@@ -15709,8 +15709,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Belong\\Xoa.cshtml",
+      "TargetPath": "Views\\Belong\\Xoa.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\User\\Index.cshtml",
+      "TargetPath": "Views\\User\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Question\\Xoa.cshtml",
+      "TargetPath": "Views\\Question\\Xoa.cshtml",
       "FileKind": "mvc"
     },
     {

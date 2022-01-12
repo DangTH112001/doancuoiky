@@ -11,11 +11,6 @@ html{
   height: 100%;
 }
 
-body{
-  min-height: 100%;
-  margin:  0px 0px;
-}
-
 /*CSS CHO NAVIGATION BAR*/
 .sidebar{
   position: fixed;
@@ -264,24 +259,6 @@ body{
   position: relative;
 }
 
-.home-section .hs__function{
-  height: 45px;
-  width: 100%;
-  background-color: #eee;
-  position: relative;
-  
-}
-
-.question_form {
-  height: max-content;
-  width: 96%;
-  background-color: blanchedalmond;
-  margin: 2%;
-  padding: 1%;
-  border-radius: 25px;
-  border:3px solid black;
-}
-
 .home-section .hs__content{
   width: 100%;
   /* height: 80%; */
@@ -292,8 +269,6 @@ body{
   height: fit-content;
   padding-bottom: 5px;
 }
-
-
 
 .filter{
   width: 20%;
@@ -714,42 +689,111 @@ body{
   font-size: 14px; text-align: center;font-weight: 800;
 }
 
-.btn-add {
-  width: 150px;
-  height: 35px;
-  border-radius: 10px;
+body{
+  min-height: 100%;
+  margin:  0px 0px;
+}
+
+body {
+  font-family: 'Saira Semi Condensed', sans-serif;
+  background-color: #000 !important
+}
+
+.tick {
+  position: relative;
+  top: 0.5vh
+}
+
+.main {
+  height: auto;
+  width: 35vw;
   background-color: white;
-  border: solid 1px tomato;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin: auto 2px;
-  color: tomato;
-  float: right;
+  margin: auto;
+  position: relative;
+  top: 15vh;
+  padding: 3vh
 }
 
-.btn-preview {
-  width: 150px;
-  height: 35px;
-  border-radius: 10px;
-  background-color: white;
-  border: solid 1px tomato;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin: auto 2px;
-  color: tomato;
-  float: right;
+.picture img {
+  height: 8vw;
+  width: 8vw;
+  position: relative;
+  top: 1vw
 }
 
-.closebtn {
-  cursor: pointer;
-  position: absolute;
-  margin-top: 1%;
-  right: 2%;
-  font-size: 45px;
-  padding: 12px 16px;
-  transform: translate(0%, -50%);
+.add {
+  background-color: #43a047;
+  position: relative;
+  top: 3vw;
+  right: 2vw
 }
 
+.name {
+  font-size: 20px
+}
 
+.details p {
+  position: relative;
+  top: 1vw
+}
+
+.name i {
+  color: blue
+}
+
+td {
+  text-align: center
+}
+
+tr {
+  border: 2px solid white
+}
+
+.info {
+  margin-top: 2%;
+  width: 100%;
+  height: max-content;
+}
+
+.info .thongtin {
+  width: 33%;
+  float: left;
+  text-align: center;
+}
+
+.edit {
+  margin-top: 2%;
+  background-color: #43a047;
+  width: 90%;
+  color: #fff !important
+}
+
+@media only screen and (max-width: 425px) {
+  .main {
+      width: 100vw;
+      height: auto
+  }
+
+  .picture img {
+      height: 40vw;
+      width: 40vw;
+      position: relative;
+      left: 5vw
+  }
+
+  .details p {
+      position: relative;
+      top: 5vw
+  }
+
+  .add {
+      position: relative;
+      top: 8vw
+  }
+}
+
+@media only screen and (max-height: 725px) {
+  .main {
+      height: auto
+  }
+}

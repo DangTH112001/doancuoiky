@@ -21,12 +21,12 @@
 
     <ul class="nav-links">
       <li class="navigation-item" id="Home">
-
         <a asp-controller="Home" asp-action="Index">
           <i class="bx bxs-home"></i>
           <span class="link_name">Trang chủ</span>
         </a>
       </li>
+
       <li class="navigation-item" id="Bookmark">
         <a asp-controller="Bookmark" asp-action="Index">
           <i class="bx bxs-bookmarks"></i>
@@ -34,25 +34,31 @@
         </a>
       </li>
 
-      <li class="navigation-item" id="Account">
+      <li class="navigation-item" id="Question">
         <a asp-controller="Question" asp-action="Index">
-          <i class="bx bxs-user-circle"></i>
+          <i class='bx bx-question-mark' ></i>
           <span class="link_name">Câu hỏi</span>
         </a>
       </li>
-        <li>
+
+      <li class="navigation-item" id="Quiz">
           <a asp-controller="Quiz" asp-action="Index">
             <i class="bx bx-compass"></i>
             <span class="link_name">Bài trắc nghiệm</span>
           </a>
-        </li>
+      </li>
+
+      <li class="navigation-item" id="User">
+          <a asp-controller="User" asp-action="Index">
+            <i class='bx bx-user-circle' ></i>
+            <span class="link_name">User</span>
+          </a>
+      </li>
+
       <li>
         <div class="profile-details">
-          <div class="profile-content">
-          </div>
           <div class="name-job">
             <div class="profile_name">Nguyễn Tấn Ngà</div>
-            <div class="job"></div>
           </div>
           <i class="bx bx-log-out" onclick="logout()"></i>
         </div>
@@ -88,7 +94,6 @@
     $(document).ready(function(){
             $('.profile_name').text(localStorage.getItem('name'));
         })
-
     
   </script>
 </body>

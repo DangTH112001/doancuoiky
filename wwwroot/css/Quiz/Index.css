@@ -531,7 +531,7 @@ body{
   background-color: white;
   margin-right: 0;
   align-self: flex-end;
-  border-radius: 20px 0 0 20px;
+  border-radius: 20px;
   flex-grow: 4;
 }
 

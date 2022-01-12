@@ -59,19 +59,21 @@ $(function () {
       $(this).val($(this).data("old"));
   });
 });
+
+var mcid = $(document).find("#id").val();
 $.ajax({
     url: '@Url.Action("getQuestions","Question")',
     method: 'post',
     dataType: 'json',
     data: {
-        mcid: $(document).find("#id").val()
+        mcid: mcid
     },
     success: function(result) {
         
         $("#questions").html("");
         for (var i in result) {
             var html = '<div id="' + result[i].id + '" class="question_form" ondblclick="edit(this.id)">';
-                html += '<span class="checkmark" hidden>&#10003;</span>';
+                html += '<span id="' + result[i].id + '" class="closebtn" onclick="xoa(this.id)">&times;</span>';
                 html += '<h4 id="question">' + result[i].question + '</h4>';
                 html += '<label id="A">A: ' + result[i].a + '</label> <br>';
                 html += '<label id="B">B: ' + result[i].b + '</label> <br>';
@@ -83,6 +85,12 @@ $.ajax({
         }
     }
 });
+
+function xoa(id) {
+    if (confirm("Xóa câu hỏi?")) {
+        window.location.href = '@Url.Action("Xoa", "Belong")?qid=' + id + '&mcid=' + mcid;
+    }
+}
 
 function edit(id) {
     if (confirm("Chỉnh sửa câu hỏi?")) {

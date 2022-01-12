@@ -29,17 +29,10 @@ namespace doancuoiky.Controllers
 
         [HttpPost]
         public JsonResult getQuestions(int mcid) {
-            Console.WriteLine(mcid);
             List<Question> list = new List<Question>();
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
             list = context.getQuestionsfromQuiz(mcid);
             return Json(list);
-        }
-
-        public IActionResult Update(int qid) {
-            ViewData["css_path"] = "/css/Question/Update.css";
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
-            return View(context.getQuestion(qid));
         }
 
         public IActionResult Insert(int uid) {
@@ -75,6 +68,23 @@ namespace doancuoiky.Controllers
             else {
                 return View();
             }
+        }
+
+        public IActionResult Xoa(int qid) {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            int err = context.xoaQuestion(qid);
+            if (err != -1) {
+                return RedirectToAction("Index", "Quiz");
+            }
+            else {
+                return View();
+            }
+        }
+
+        public IActionResult Update(int qid) {
+            ViewData["css_path"] = "/css/Question/Update.css";
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            return View(context.getQuestion(qid));
         }
     }
 }

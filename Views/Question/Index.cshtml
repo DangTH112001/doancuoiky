@@ -76,6 +76,7 @@
         @foreach (var item in Model)
         {
             <div id='@item.id' class="question_form" onclick="changeForm(this.id)" ondblclick="edit(this.id)">
+                <span id='@item.id' class="closebtn" onclick="xoaQuestion(this.id)">&times;</span>
                 <span class="checkmark" hidden>&#10003;</span>
                 <h4 id="question">@item.question</h4>
                 <label id="A">A: @item.A</label> <br>
@@ -105,6 +106,7 @@
                 $("#questions").html("");
                 for (var i in result) {
                     var html = '<div id="' + result[i].id + '" class="question_form" onclick="changeForm(this.id)" ondblclick="edit(this.id)">';
+                        html += '<span id="' + result[i].id + '" closebtn" onclick="xoaQuestion()">&times;</span>';
                         html += '<span class="checkmark" hidden>&#10003;</span>';
                         html += '<h4 id="question">' + result[i].question + '</h4>';
                         html += '<label id="A">A: ' + result[i].a + '</label> <br>';
@@ -149,8 +151,15 @@
   }
 
   function edit(id) {
+    
     if (confirm("Chỉnh sửa câu hỏi?")) {
         window.location.href = '@Url.Action("Update", "Question")?qid=' + id;
+    }
+  }
+
+  function xoaQuestion(id) {
+    if (confirm("Xóa câu hỏi?")) {
+        window.location.href = '@Url.Action("Xoa", "Question")?qid=' + id;
     }
   }
 
