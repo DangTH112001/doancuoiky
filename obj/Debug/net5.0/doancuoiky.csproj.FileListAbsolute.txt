@@ -178,3 +178,10 @@ C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Quiz\Sua.csh
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\User\Index.cshtml.g.cs
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Question\Xoa.cshtml.g.cs
 C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Belong\Xoa.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\DangT\Desktop\Code\doancuoiky\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\DangT\Desktop\Code\doancuoiky\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\DangT\Desktop\Code\doancuoiky\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Home\ReviewQuiz.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Home\StartQuiz.cshtml.g.cs
+C:\Users\DangT\Desktop\Code\doancuoiky\obj\Debug\net5.0\Razor\Views\Bookmark\Xoa.cshtml.g.cs

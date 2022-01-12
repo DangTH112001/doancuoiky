@@ -13,7 +13,19 @@ namespace doancuoiky.Controllers
     {
         public IActionResult Index() {
             ViewData["css_path"] = "/css/Bookmark/Index.css";
-            return View();
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            return View(context.getBookmark(AuthController.uid));
+        }
+
+        public IActionResult Xoa(int mcid) {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            int err = context.xoaBookmark(AuthController.uid, mcid);
+            if (err != -1) {
+                return RedirectToAction("Index", "Bookmark");
+            }
+            else {
+                return View();
+            }
         }
     }
 }

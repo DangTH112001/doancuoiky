@@ -1,76 +1,30 @@
 @{
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+  Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+@model List<Multiplechoice>
 
-  <section class="home-section">
-    <div class="hs__header" style="display: none;">
-      <div class="searchbox">
-        <form>
-          <input id="tf_search" type="text" name="" placeholder="Nhập nội dung của bạn...">
-          <input id="btn_search" type="submit" name="" value="Tìm ngay">
-        </form>
-      </div>
+<section class="home-section">
+  <div class="hs__header" style="display: none;">
+    <div class="searchbox">
+      <form>
+        <input id="tf_search" type="text" name="" placeholder="Nhập nội dung của bạn...">
+        <input id="btn_search" type="submit" name="" value="Tìm ngay">
+      </form>
     </div>
-    <div class="hs__content">
-      <ul class="bookmark-list">
-        <!-- <li>
-          <div class="quiz-id-value" style="display: none;"><p>id01</p></div>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li>
+  </div>
+  <div class="hs__content">
+    <h3 class="grid-subject-title">DANH SÁCH ĐÃ LƯU</h3>
+    <ul class="bookmark-list">
+      @foreach (var item in Model)
+      {
         <li>
           <div class="bookmark-item-name">
             <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
+              <img src="https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg" alt="" />
             </div>
             <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
+              <p>@item.description</p>
+              <h3>@item.title</h3>
             </div>
           </div>
           <div class="bookmark-item-info">
@@ -79,7 +33,7 @@
                 <p>SỐ CÂU</p>
               </div>
               <div class="col-val">
-                <h2>50 câu</h2>
+                <h2>@item.total câu</h2>
               </div>
             </div>
             <div class="info-col">
@@ -87,10 +41,10 @@
                 <p>THỜI LƯỢNG</p>
               </div>
               <div class="col-val">
-                <h2>30 phút</h2>
+                <h2>@item.time phút</h2>
               </div>
             </div>
-            <div class="info-col">
+            <div class="info-col" style="display: none">
               <div class="col-name">
                 <p>ĐIỂM CAO NHẤT</p>
               </div>
@@ -103,312 +57,30 @@
                 <p>THAM GIA</p>
               </div>
               <div class="col-val">
-                <h2>112 bạn</h2>
+                <h2>@item.participant bạn</h2>
               </div>
             </div>
             <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
+              <button id='@item.id' class="btn_join" onclick="startQuiz(this.id)">Thi ngay</button>
+              <button id='@item.id' class="btn_remove" onclick="removeBookmark(this.id)">Xóa bỏ</button>
             </div>
           </div>
         </li>
-        <li>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="bookmark-item-name">
-            <div class="quiz-channel-icon">
-              <img src="../../Assets/avatar-icon.jpg" alt="" />
-            </div>
-            <div class="quiz-name">
-              <p>Chuyên đề hình học không gian</p>
-              <h3>Tìm điều kiện thỏa mãn đăng thức cho trước nâng cao</h3>
-            </div>
-          </div>
-          <div class="bookmark-item-info">
-            <div class="info-col">
-              <div class="col-name">
-                <p>SỐ CÂU</p>
-              </div>
-              <div class="col-val">
-                <h2>50 câu</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THỜI LƯỢNG</p>
-              </div>
-              <div class="col-val">
-                <h2>30 phút</h2>
-              </div>
-            </div>
-            <div class="info-col" style="display:none">
-              <div class="col-name">
-                <p>ĐIỂM CAO NHẤT</p>
-              </div>
-              <div class="col-val">
-                <h2>9.8</h2>
-              </div>
-            </div>
-            <div class="info-col">
-              <div class="col-name">
-                <p>THAM GIA</p>
-              </div>
-              <div class="col-val">
-                <h2>112 bạn</h2>
-              </div>
-            </div>
-            <div class="bookmark-item-action">
-              <button id="btn_join" onclick="window.alert('Bạn đã bấm thi trong bookmark')">Thi ngay</button>
-              <button id="btn_remove" onclick="window.alert('Bạn đã bấm xóa item trong bookmark')">Xóa bỏ</button>
-            </div>
-          </div>
-        </li> -->
-      </ul>
-    </div>
-  </section>
+      }
+    </ul>
+  </div>
+</section>
 
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="~/js/Bookmark.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
+  function removeBookmark(id) {
+    if (confirm("Xóa câu bài trắc nghiệm khỏi danh sách lưu?")) {
+        window.location.href = '@Url.Action("Xoa", "Bookmark")?mcid=' + id;
+    }
+  };
+
+  function startQuiz(clickedID) {
+      console.log('startQuiz...');
+      window.location = '@Url.Action("StartQuiz", "Home")?id=' + clickedID;
+  };
+</script>

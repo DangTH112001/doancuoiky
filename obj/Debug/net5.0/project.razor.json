@@ -15689,6 +15689,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Home\\ReviewQuiz.cshtml",
+      "TargetPath": "Views\\Home\\ReviewQuiz.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Home\\StartQuiz.cshtml",
+      "TargetPath": "Views\\Home\\StartQuiz.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Quiz\\Sua.cshtml",
       "TargetPath": "Views\\Quiz\\Sua.cshtml",
       "FileKind": "mvc"
@@ -15731,6 +15741,11 @@
     {
       "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\Views\\Bookmark\\Xoa.cshtml",
+      "TargetPath": "Views\\Bookmark\\Xoa.cshtml",
       "FileKind": "mvc"
     }
   ],

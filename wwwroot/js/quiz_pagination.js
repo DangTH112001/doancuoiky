@@ -64,24 +64,24 @@ $(document).ready(function () {
                                 <h3>` + title + `</h3>
                                 </div>
                                 <div class="quiz-content">
-                                    <div class="quiz-channel">
-                                        
-                                        <p>Số câu hỏi: <b>` + questionNum + ` câu</b></p>
-                                    </div>
-                                    <div class="quiz-action">
-                                        <button id="` + id + `" onclick="test(this.id)">Sửa</button>
-                                        
-                                    </div>
-                                    <div class="quiz-descr">
-                                        <p>
-                                        <span>Thời lượng</span><br />
-                                        <span>` + duration + ` phút</span>
-                                        </p>
-                                        <p>
-                                        <span>Tham gia</span><br />
-                                        <span>` + participant + `</span>
-                                        </p>
-                                    </div>
+                                <div class="quiz-channel">
+                                    
+                                    <p>Số câu hỏi: <b>` + questionNum + ` câu</b></p>
+                                </div>
+                                <div class="quiz-action">
+                                    <button id="` + id + `" onclick="test(this.id)">Sửa</button>
+                                    
+                                </div>
+                                <div class="quiz-descr">
+                                    <p>
+                                    <span>Thời lượng</span><br />
+                                    <span>` + duration + ` phút</span>
+                                    </p>
+                                    <p>
+                                    <span>Tham gia</span><br />
+                                    <span>` + participant + `</span>
+                                    </p>
+                                </div>
                                 </div>
                             </div>
         `;

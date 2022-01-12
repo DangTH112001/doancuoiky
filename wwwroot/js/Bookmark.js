@@ -84,25 +84,3 @@ function prepareQuizItem(quizID, topic, title, quesNum, duration, joiner) {
 
     $('.bookmark-list').append(data);
 }
-
-function removeBookmark(clickID) {
-    console.log('remove bookmark...');
-    var userid = localStorage.getItem('currentUID');
-    console.log('uid: ' + userid + " quizid: " + clickID);
-    $.ajax({
-        url: "removebookmark",
-        method: "POST",
-        dataType: 'json',
-        data: { userid: userid, quizid: clickID },
-        success: function (data) {
-            console.log('Xóa khỏi bookmark thành công');
-            $('.bookmark-list').empty();
-            loadBookmarkedQuiz();
-        }
-    })
-}
-
-function startQuiz(clickedID) {
-    console.log('startQuiz...');
-    window.location = 'startquiz?id=' + clickedID;
-}

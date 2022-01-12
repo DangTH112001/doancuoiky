@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RvPQ/oekGlHLaSShfgRceY3S9yUo5LeRelCIqYfc1Wmr+vU5kaLLjSYpAHsvVk0CbC/YCaakZj9ujD7NxXO21Q==",
+  "dgSpecHash": "fSCyeRGVTzP7fLMBZcys9O5HRRxBtFCxMUOccu63hCH0LEGBVkknheuWcB7LsTxjZEd9d45OWa7dZae3jNOp5g==",
   "success": true,
   "projectFilePath": "C:\\Users\\DangT\\Desktop\\Code\\doancuoiky\\doancuoiky.csproj",
   "expectedPackageFiles": [
@@ -9,9 +9,14 @@
     "C:\\Users\\DangT\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\k4os.compression.lz4.streams\\1.2.6\\k4os.compression.lz4.streams.1.2.6.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
+    "C:\\Users\\DangT\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.13\\microsoft.aspnetcore.jsonpatch.5.0.13.nupkg.sha512",
+    "C:\\Users\\DangT\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.13\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.13.nupkg.sha512",
+    "C:\\Users\\DangT\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\mysql.data\\8.0.27\\mysql.data.8.0.27.nupkg.sha512",
+    "C:\\Users\\DangT\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\DangT\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
     "C:\\Users\\DangT\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",

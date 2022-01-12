@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="hs__content">
-      <div class="subject-container" style="display: none;">
+      <div class="subject-container" hidden>
         <center>
           <h1 class="subject-title">Các bài<span>Phổ biến</span></h1>
         </center>
@@ -113,9 +113,13 @@
       <h3 class="grid-subject-title">CÁC BÀI TRẮC NGHIỆM ĐANG CÓ</h3>
 
       <div id="all-quiz" class="data-item-wrapper">
-        <div id="list-all-quiz" class="grid-subjects"></div>
-        <div class="loading-items-space"></div>
+        <div id="list-all-quiz" class="grid-subjects">
+        </div>
+        <div class="loading-items-space">
+          <!-- <p>loading...</p> -->
+        </div>
       </div>
+
       <div id="result-data" class="data-item-wrapper">
         <div id="list-search-quiz" class="grid-subjects">
         </div>
@@ -133,28 +137,24 @@
 
     function startQuiz(clickedID) {
       console.log('startQuiz...');
-      window.location = 'startquiz?id=' + clickedID;
+      window.location = '/Home/StartQuiz?id=' + clickedID;
     }
 
-    function bookmarkQuiz(clickedID) {
+    function bookmark(clickedID) {
       var userid = localStorage.getItem('uid');
       $.ajax({
-        url: "bookmarkquiz",
+        url: "/Home/BookmarkQuiz",
         method: "POST",
         dataType: 'json',
-        data: {
-          userid: userid,
-          quizid: clickedID
-        },
+        data: {'userID': userid,'quizID': clickedID},
         success: function(data) {
-          console.log(data);
-          if(data == 1){
+          console.log("Kết qua bookmark: " + data);
+          if(data == 0 || data == 1){
             alert('Đánh dấu thành công!');
           }else{
             alert('Bạn đã đánh dấu bài này rồi!');
           }
         }
-      })
-
+      });
     }
   </script>

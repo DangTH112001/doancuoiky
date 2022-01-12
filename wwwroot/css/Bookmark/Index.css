@@ -388,7 +388,19 @@ body{
 .bookmark-item-name .quiz-name h3{
   height: 70%;
   font-size: 18px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+}
+
+.grid-subject-title{
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 1000;
+  font-size: 45px;
+  color: #130f40;
 }
 
 .bookmark-item-info{

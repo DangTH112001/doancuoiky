@@ -23,7 +23,7 @@ namespace doancuoiky.Controllers
             if (filter == "all") 
                 list = context.getQuestions(AuthController.uid);
             else 
-                list = context.getQuestions(filter);
+                list = context.getQuestions(filter, AuthController.uid);
             return Json(list);
         }
 
@@ -74,7 +74,7 @@ namespace doancuoiky.Controllers
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
             int err = context.xoaQuestion(qid);
             if (err != -1) {
-                return RedirectToAction("Index", "Quiz");
+                return RedirectToAction("Index", "Question");
             }
             else {
                 return View();

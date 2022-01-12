@@ -21,7 +21,7 @@ $(document).ready(function () {
     })
 
     var time = QuizList[0].quiztime;
-    time = 1;
+    //time = 1;
   
     var hourTime = parseInt(time/60);
     console.log('gioi lam bai: ' + hourTime);
@@ -59,6 +59,7 @@ $(document).ready(function () {
     // sự kiện khi bấm vào 1 trong 4 câu trả lời
     $('.column').click(function () {
         var currentID = QuestionPointer.index;
+        console.log('ID of question: ' + currentID);
         var opt = $(this).attr('id');
         unhightlightOption();
         chooseAnswer(currentID, opt, StudentChoice);
@@ -127,7 +128,7 @@ function storeResultInLocal(answerList){
 
 function cancelQuiz(){
     if(confirm('Quá trình làm bài của bạn sẽ không được lưu lại nếu thoát!\n Bạn chắc chứ?') == true){
-        location.href = "home";
+        location.href = "Index";
     }
 }
 
@@ -135,16 +136,16 @@ function classifyAnswer(input_opt) {
     var out_opt
     switch (input_opt) {
         case 'opta':
-            out_opt = 'a';
+            out_opt = 'A';
             break;
         case 'optb':
-            out_opt = 'b';
+            out_opt = 'B';
             break;
         case 'optc':
-            out_opt = 'c';
+            out_opt = 'C';
             break;
         case 'optd':
-            out_opt = 'd';
+            out_opt = 'D';
             break;
         default:
             out_opt = 'err'
@@ -158,7 +159,7 @@ function checkResult(quizTotal, submittedAnswerList){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const quizID = urlParams.get('id');
-    const userID = localStorage.getItem('currentUID');
+    const userID = localStorage.getItem('uid');
 
     if(submittedAnswerList.length == 0){
         alert('Bạn chưa chọn đáp nào! Hãy bắt đầu lại!');
@@ -166,16 +167,17 @@ function checkResult(quizTotal, submittedAnswerList){
     }else{
         $.ajax({
             type: 'POST',
-            url: 'submitquiz',
+            url: '/Home/SubmitQuiz',
             dataType: 'json',
-            data: {'quizID': quizID, 'answerList': submittedAnswerList, 'quesNum': quizTotal, 'userID': userID},
+            data: {'quizID': quizID, 'answerList': JSON.stringify(submittedAnswerList), 'quesNum': quizTotal, 'userID': userID},
             success: function(data){
                 data = Math.round(data * 100) / 100
-                console.log("Kết quả của bạn là: " + data);
+                console.log("Kết quả của bạn là: \n" + data);
                 alert('Kết quả làm bài của bạn là: ' + data + ' điểm');
+                location.href = "ReviewQuiz?id=" + quizID + "&score=" + data;
             }
         })
-        location.href = "result?id=" + quizID;
+        
     }
 }
 

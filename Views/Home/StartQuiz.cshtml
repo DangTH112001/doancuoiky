@@ -1,0 +1,70 @@
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Home/StartQuiz.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.js" integrity="sha384-lhN3C1JSmmvbT89RGOy6nC8qFBS8X/PLsBWIqiNdD4WGNsYOWpS2Il0x4TBrK8E2" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="~/js/StartQuiz.js"></script>
+</head>
+
+<body>
+    <div class="MasterData" style="display: none;">
+       @foreach (var item in Model)
+       {
+           <div class='quiz-info'>
+                <p id='ques-id'>@item.GetType().GetProperty("QuestionID").GetValue(item, null)</p>;
+                <p id='ques-content'>@item.GetType().GetProperty("QuestionContent").GetValue(item, null)</p>;
+                <p id='ques-opta'>@item.GetType().GetProperty("OptA").GetValue(item, null)</p>;
+                <p id='ques-optb'>@item.GetType().GetProperty("OptB").GetValue(item, null)</p>;
+                <p id='ques-optc'>@item.GetType().GetProperty("OptC").GetValue(item, null)</p>;
+                <p id='ques-optd'>@item.GetType().GetProperty("OptD").GetValue(item, null)</p>;
+                <p id='quiz-time'>@item.GetType().GetProperty("Time").GetValue(item, null)</p>;
+           </div> 
+       }
+    </div>
+    <div class="sidebar">
+        <div class="quiz-num">
+        </div>
+        <div class="quiz-time">
+            <h3 id="hour" class="coundown-time">00</h3>
+            <p>:</p>
+            <h3 id="minute" class="coundown-time">00</h3>
+            <p>:</p>
+            <h3 id="second" class="coundown-time">00</h3>
+        </div>
+        <div class="quiz-action">
+            <button id="btn_submit">Nộp bài</button>
+            <button id="btn_cancel">Hủy</button>
+        </div>
+    </div>
+    <div class="quiz-content">
+        <div class="quiz-question">
+            
+        </div>
+        <div class="quiz-option">
+            <div class="row">
+                <div class="column" id="opta">
+                    <h2>A)</h2>
+                </div>
+                <div class="column" id="optb">
+                    <h2>B)</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column" id="optc">
+                    <h2>C)</h2>
+                </div>
+                <div class="column" id="optd">
+                    <h2>D)</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
