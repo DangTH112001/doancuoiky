@@ -45,58 +45,6 @@ namespace doancuoiky.Models
             return 0; // Không có user trong database
         }
 
-        public List<Object> getUser(int id) {
-            List<Object> result = new List<Object>();
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                try {
-                    string query = "SELECT A.name name, A.SLTG SLTG, B.SLT SLT, get_rank(@id0) r" +
-                                    " FROM (" +
-                                    " (" +
-                                        " SELECT user.id, name, count(interaction.mcid) SLTG " +
-                                        " from user inner join interaction on user.id = interaction.uid" +
-                                        " where user.id = @id1" +
-                                        " group by user.id, user.name " +  
-                                    " ) A," +
-                                    " (" +
-                                        " SELECT count(multiplechoice.id) SLT " +
-                                        " from user inner join multiplechoice on user.id = multiplechoice.uid" +
-                                        " where user.id = @id2" +                                        
-                                        " group by user.id, user.name " +
-
-                                    " ) B" +
-                                    " )" +
-                                    " WHERE A.id = @id3";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("id0", id);
-                    cmd.Parameters.AddWithValue("id1", id);
-                    cmd.Parameters.AddWithValue("id2", id);
-                    cmd.Parameters.AddWithValue("id3", id);
-                    using (var reader = cmd.ExecuteReader()) {
-                        while (reader.Read())
-                        {
-                            var obj = new
-                            {
-                                name = reader["name"].ToString(),
-                                SLTG = Convert.ToInt32(reader["SLTG"]),
-                                SLT = Convert.ToInt32(reader["SLT"]),
-                                rank = Convert.ToInt32(reader["r"])
-                            };
-                            result.Add(obj);
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception ex) {
-                    Console.WriteLine(ex);
-                    return null;
-                }
-                conn.Close();
-            }
-            return result;
-        }
-
         public int xoaQuestion(int qid) {
             using (MySqlConnection conn = GetConnection()) {
                 conn.Open();
@@ -153,6 +101,79 @@ namespace doancuoiky.Models
                 }
             }
             return null;
+        }
+
+        public int getSLTG(int id) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = " SELECT count(interaction.mcid) SLTG" +
+                                    " from user inner join interaction on user.id = interaction.uid" +
+                                    " where user.id = @id" +
+                                    " group by user.id";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("id", id);
+                    using (var reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            return Convert.ToInt32(reader["SLTG"]);
+                        }
+                    }
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return 0;
+                }
+            }
+            return 0;
+        }
+
+        public int getSLT(int id) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = " SELECT count(multiplechoice.id) SLT " +
+                                        " from user inner join multiplechoice on user.id = multiplechoice.uid" +
+                                        " where user.id = @id" +                                        
+                                        " group by user.id, user.name ";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("id", id);
+                    using (var reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            return Convert.ToInt32(reader["SLT"]);
+                        }
+                    }
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return 0;
+                }
+            }
+            return 0;
+        }
+
+        public int getRank(int id) {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                try {
+                    string query = "SELECT get_rank(@id1) r FROM USER WHERE id = @id2";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("id1", id);
+                    cmd.Parameters.AddWithValue("id2", id);
+                    using (var reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            return Convert.ToInt32(reader["r"]);
+                        }
+                    }
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex);
+                    return 1000;
+                }
+            }
+            return 1000;
         }
 
         public int existUser(string username) {

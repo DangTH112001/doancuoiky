@@ -71,7 +71,7 @@ $(document).ready(function () {
                                 <div class="quiz-content">
                                 <div class="quiz-channel">
                                     <div class="quiz-channel-icon">
-                                    <img src="" alt="" />
+                                    <img src="https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg" alt="" />
                                     </div>
                                     <p>Số câu hỏi: <b>` + questionNum + ` câu</b></p>
                                 </div>

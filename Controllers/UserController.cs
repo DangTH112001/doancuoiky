@@ -14,7 +14,17 @@ namespace doancuoiky.Controllers
         public IActionResult Index() {
             ViewData["css_path"] = "/css/User/Index.css";
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
-            return View(context.getUser(AuthController.uid));
+            List<Object> list = new List<object>();
+
+            var obj = new
+                        {
+                            name = context.getName(AuthController.uid),
+                            SLTG = context.getSLTG(AuthController.uid),
+                            SLT = context.getSLT(AuthController.uid),
+                            rank = context.getRank(AuthController.uid)
+                        };
+            list.Add(obj);
+            return View(list);
         }
     }
 }
