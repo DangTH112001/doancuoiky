@@ -225,3 +225,8 @@ D:\doancuoiky\obj\Debug\net5.0\doancuoiky.dll
 D:\doancuoiky\obj\Debug\net5.0\ref\doancuoiky.dll
 D:\doancuoiky\obj\Debug\net5.0\doancuoiky.pdb
 D:\doancuoiky\obj\Debug\net5.0\doancuoiky.genruntimeconfig.cache
+D:\doancuoiky\obj\Debug\net5.0\Razor\Views\Home\StartQuiz.cshtml.g.cs
+D:\doancuoiky\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\doancuoiky\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\doancuoiky\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\doancuoiky\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

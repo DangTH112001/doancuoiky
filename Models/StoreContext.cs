@@ -268,18 +268,18 @@ namespace doancuoiky.Models
                         query = @"
                             select id, title, description, time, total, participant 
                             from multiplechoice 
-                            where filter = '"+ filter + "'";
+                            where filter = '" + filter + "'";
                     }
                     else
                     {
                         query = @"
                             select id, title, description, time, total, participant
                                 from multiplechoice 
-                                where lower(title) like '%"+ text + @"%' and filter = '"+ filter + @"'
+                                where lower(title) like '%" + text + @"%' and filter = '" + filter + @"'
                             union 
                             select id, title, description, time, total, participant
                                 from multiplechoice 
-                                where lower(description) like '%"+ text + @"%' and filter = '"+ filter +"'";
+                                where lower(description) like '%" + text + @"%' and filter = '" + filter + "'";
                     }
                 }
 
@@ -308,6 +308,85 @@ namespace doancuoiky.Models
                 conn.Close();
             }
 
+            return list;
+        }
+
+        public List<object> GetQuiz(int QuizID)
+        {
+            List<object> list = new List<object>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                string query = @"
+                        select q.id QuestionID, q.question QuestionContent, 
+                            q.a OptA, q.b OptB, q.c OptC, q.d OptD, 
+                            m.time Time
+                        from multiplechoice m, belong b, question q 
+                        where m.id = b.mcid and b.qid = q.id and m.id = " + QuizID;
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var obj = new
+                            {
+                                QuestionID = Convert.ToInt32(reader["QuestionID"]),
+                                QuestionContent = reader["QuestionContent"].ToString(),
+                                OptA = reader["OptA"],
+                                OptB = reader["OptB"],
+                                OptC = reader["OptC"],
+                                OptD = reader["OptD"],
+                                Time = Convert.ToInt32(reader["Time"])
+                            };
+
+                            list.Add(obj);
+                        }
+
+                        reader.Close();
+                    }
+                }
+
+                conn.Close();
+            }
+
+            return list;
+        }
+
+        public List<AnswerList> checkResult(int QuizID)
+        {
+            List<AnswerList> list = new List<AnswerList>();
+            string query = @"
+            select q.id, q.answer 
+            from question q, multiplechoice m, belong b
+            where q.id = b.qid and b.mcid = m.id and m.id = " + QuizID;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                          list.Add(new AnswerList()
+                          {
+                              id = Convert.ToInt32(reader["id"]),
+                              opt = reader["answer"].ToString()
+                          });
+                        }
+                        reader.Close();
+                    }
+                }
+                conn.Close();
+            }
             return list;
         }
     }

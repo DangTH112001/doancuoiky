@@ -15649,6 +15649,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\doancuoiky\\Views\\Home\\StartQuiz.cshtml",
+      "TargetPath": "Views\\Home\\StartQuiz.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\doancuoiky\\Views\\Question\\Update.cshtml",
       "TargetPath": "Views\\Question\\Update.cshtml",
       "FileKind": "mvc"
