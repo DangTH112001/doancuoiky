@@ -376,11 +376,49 @@ namespace doancuoiky.Models
                     {
                         while (reader.Read())
                         {
-                          list.Add(new AnswerList()
-                          {
-                              id = Convert.ToInt32(reader["id"]),
-                              opt = reader["answer"].ToString()
-                          });
+                            list.Add(new AnswerList()
+                            {
+                                id = Convert.ToInt32(reader["id"]),
+                                opt = reader["answer"].ToString()
+                            });
+                        }
+                        reader.Close();
+                    }
+                }
+                conn.Close();
+            }
+            return list;
+        }
+
+        public List<Question> GetResultByQuizID(int quizID)
+        {
+            List<Question> list = new List<Question>();
+            string query = @"
+                select q.id QuestionID, q.question QuestionContent, q.a OptA, q.b OptB, q.c OptC, q.d OptD, q.answer Answer
+                from multiplechoice m, belong b, question q 
+                where m.id = b.mcid and b.qid = q.id and m.id = " + quizID;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new Question()
+                            {
+                                id = Convert.ToInt32(reader["QuestionID"]),
+                                question = reader["QuestionContent"].ToString(),
+                                A = reader["OptA"].ToString(),
+                                B = reader["OptB"].ToString(),
+                                C = reader["OptC"].ToString(),
+                                D = reader["OptD"].ToString(),
+                                answer = reader["Answer"].ToString()
+                            });
                         }
                         reader.Close();
                     }

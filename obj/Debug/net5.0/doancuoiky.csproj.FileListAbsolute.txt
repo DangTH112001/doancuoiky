@@ -230,3 +230,4 @@ D:\doancuoiky\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\doancuoiky\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\doancuoiky\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\doancuoiky\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\doancuoiky\obj\Debug\net5.0\Razor\Views\Home\ReviewQuiz.cshtml.g.cs

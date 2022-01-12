@@ -84,6 +84,16 @@ namespace doancuoiky.Controllers
             return Score;
         }
 
+        [HttpGet]
+        public IActionResult ReviewQuiz(int id)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
+            List<Question> list = new List<Question>();
+            list = context.GetResultByQuizID(id);
+            ViewBag.Data = list;
+            return View();
+        }
+
         [HttpPost]
         public string TestCode(int quizID, string answerList, int quesNum, int userID)
         {

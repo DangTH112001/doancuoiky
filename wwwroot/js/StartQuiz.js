@@ -176,7 +176,7 @@ function checkResult(quizTotal, submittedAnswerList){
                 alert('Kết quả làm bài của bạn là: ' + data + ' điểm');
             }
         })
-        // location.href = "result?id=" + quizID;
+        location.href = "ReviewQuiz?id=" + quizID;
     }
 }
 
