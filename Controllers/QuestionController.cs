@@ -44,8 +44,13 @@ namespace doancuoiky.Controllers
         public IActionResult Preview(string list) {
             ViewData["css_path"] = "/css/Question/Preview.css";
             StoreContext context = HttpContext.RequestServices.GetService(typeof(doancuoiky.Models.StoreContext)) as StoreContext;
-            string[] ds = list.Split('_');
-            return View(context.getQuestions(ds));
+            if (list != null) {
+                string[] ds = list.Split('_');
+                return View(context.getQuestions(ds));
+            }
+            else {
+                return RedirectToAction("Index", "Question");
+            }
         }
 
         public IActionResult Them(string question, string filter, string A, string B, string C, string D, string answer, int uid) {
