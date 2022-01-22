@@ -170,8 +170,12 @@ CREATE TABLE `user` (
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `gender`, `birthday`, `upvote`, `greentick`, `account`, `password`, `isCoach`, `createDate`) VALUES
-(1, 'Trịnh Huỳnh Đăng', 'Nam', '2001-01-01', 0, 0, 'dangth112001', '1234567890', 1, '2021-11-22');
+INSERT INTO `user` (`id`, `name`, `upvote`, `greentick`, `account`, `password`) VALUES
+(1, 'Trịnh Huỳnh Đăng', 0, 0, 'dangth112001', '1234567890');
+INSERT INTO `user` (`id`, `name`, `upvote`, `greentick`, `account`, `password`) VALUES
+(2, 'Nguyễn Tấn Ngà', 0, 0, 'ngant162001', '1234567890');
+INSERT INTO `user` (`id`, `name`, `upvote`, `greentick`, `account`, `password`) VALUES
+(3, 'Trịnh Huỳnh Đăng', 0, 0, 'nhanhn2001', '1234567890');
 
 --
 -- Chỉ mục cho các bảng đã đổ
